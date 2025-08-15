@@ -236,17 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const xungToiClasses = ["Xưng Tội 1A","Xưng Tội 1B","Xưng Tội 1C","Xưng Tội 1D","Xưng Tội 1E","Xưng Tội 2A","Xưng Tội 2B","Xưng Tội 2C","Xưng Tội 2D"];
 
   // ===== HELPERS =====
- function formatName(name) {
-  if (!name) return '';
-  return name
-    .trim()
-    .split(/\s+/) // tách theo khoảng trắng
-    .map(word => {
-      // lấy ký tự đầu (kể cả chữ có dấu), ghép với phần còn lại
-      return word.charAt(0).toLocaleUpperCase('vi') + word.slice(1).toLocaleLowerCase('vi');
-    })
-    .join(' ');
-}
+ function formatName(name){ return name.replace(/\w\S*/g, t => t.charAt(0).toUpperCase() + t.substr(1).toLowerCase()); }
 
 
 
@@ -526,6 +516,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
 
 </body>
 </html>
+
 
 
 
