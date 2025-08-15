@@ -224,7 +224,7 @@
     </div>
   </div>
 
-  <script>
+ <script>
 document.addEventListener('DOMContentLoaded', function() {
   // ====== CẤU HÌNH BACKEND (Apps Script Web App) ======
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-W7MfgrAL6ZQ0QO27B4nlpnvZ2O-eR1fZq1RdXlVtukY59lJy9HHl9837-x3BjoZPfw/exec";
@@ -302,7 +302,6 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('motherPhone').addEventListener('blur', function(){ this.value = formatPhone(this.value); });
 
   const khaiTamCheckbox = document.getElementById('khaiTam');
-  // Hỗ trợ cả 2 ID: 'xungToiRuocLe' (ASCII) hoặc 'xungToiRướcLễ' (có dấu)
   const xungToiCheckbox = document.getElementById('xungToiRuocLe') || document.getElementById('xungToiRướcLễ');
   const classSelect = document.getElementById('classRegistration');
 
@@ -394,30 +393,32 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!regGroupEl){ showMessage('Vui lòng chọn KHỐI đăng ký.', 'error'); return; }
     if (!genderEl){ showMessage('Vui lòng chọn GIỚI TÍNH.', 'error'); return; }
 
+    // QUAN TRỌNG: xác định trạng thái "Chưa rửa tội"
+    const notBaptized = !!document.getElementById('notBaptized').checked;
+
     const formData = {
-    name: document.getElementById('name').value || '',
-    dob: document.getElementById('dob').value || '',
-    birthPlace: getBirthPlace(),
-    gender: (document.querySelector('input[name="gender"]:checked')||{}).value || '',
-    registrationGroup: (document.querySelector('input[name="registrationGroup"]:checked')||{}).value || '',
-    classRegistration: document.getElementById('classRegistration').value || '',
+      name: document.getElementById('name').value || '',
+      dob: document.getElementById('dob').value || '',
+      birthPlace: getBirthPlace(),
+      gender: genderEl.value,
+      registrationGroup: regGroupEl.value,
+      classRegistration: document.getElementById('classRegistration').value || '',
 
-    // ↓↓↓ CHỖ QUAN TRỌNG ↓↓↓
-    notBaptized, // vẫn gửi lên nếu cần dùng
-    baptismDate: notBaptized ? 'Chưa rửa tội' : (document.getElementById('baptismDate').value || ''),
-    baptismBook: notBaptized ? 'Chưa rửa tội' : getBaptismBook(),
-    baptismPlace: notBaptized ? 'Chưa rửa tội' : getBaptismPlace(),
-    // ↑↑↑ CHỖ QUAN TRỌNG ↑↑↑
+      // Nếu tick "Chưa rửa tội" → đồng bộ 3 cột đều ghi "Chưa rửa tội"
+      notBaptized,
+      baptismDate: notBaptized ? 'Chưa rửa tội' : (document.getElementById('baptismDate').value || ''),
+      baptismBook: notBaptized ? 'Chưa rửa tội' : getBaptismBook(),
+      baptismPlace: notBaptized ? 'Chưa rửa tội' : getBaptismPlace(),
 
-    fatherName: document.getElementById('fatherName').value || '',
-    motherName: document.getElementById('motherName').value || '',
-    parish: document.getElementById('parish').value || '',
-    fatherPhone: document.getElementById('fatherPhone').value || '',
-    motherPhone: document.getElementById('motherPhone').value || '',
-    address: document.getElementById('address').value || '',
-    nameGLV: document.getElementById('nameGLV').value || '',
-    notes: document.getElementById('notes').value || ''
-  };
+      fatherName: document.getElementById('fatherName').value || '',
+      motherName: document.getElementById('motherName').value || '',
+      parish: document.getElementById('parish').value || '',
+      fatherPhone: document.getElementById('fatherPhone').value || '',
+      motherPhone: document.getElementById('motherPhone').value || '',
+      address: document.getElementById('address').value || '',
+      nameGLV: document.getElementById('nameGLV').value || '',
+      notes: document.getElementById('notes').value || ''
+    };
 
     showMessage('Đang gửi...', 'success');
 
@@ -426,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
       try {
         const res = await fetch(SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // tránh CORS preflight
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // tránh preflight
           body: JSON.stringify(formData)
         });
         const json = await res.json();
@@ -479,8 +480,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
 </body>
 </html>
+
 
 
 
