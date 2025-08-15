@@ -236,7 +236,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const xungToiClasses = ["Xưng Tội 1A","Xưng Tội 1B","Xưng Tội 1C","Xưng Tội 1D","Xưng Tội 1E","Xưng Tội 2A","Xưng Tội 2B","Xưng Tội 2C","Xưng Tội 2D"];
 
   // ===== HELPERS =====
- function formatName(name){ return name.replace(/\w\S*/g, t => t.charAt(0).toUpperCase() + t.substr(1).toLowerCase()); }
+ function formatName(name) {
+  if (!name) return '';
+  return name
+    .toLowerCase()
+    .replace(/(^|\s)\p{L}/gu, m => m.toUpperCase());
+}
+
 
 
 
@@ -253,6 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (d.length === 10) {
     return `${d.slice(0,4)}.${d.slice(4,7)}.${d.slice(7,10)}`;
+  }
   }
   function showMessage(text, type){
     const el = document.getElementById('message');
@@ -516,6 +523,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
 
 </body>
 </html>
+
 
 
 
