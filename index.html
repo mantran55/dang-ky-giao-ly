@@ -385,62 +385,77 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ===== SUBMIT → Apps Script (fetch ưu tiên, fallback google.script.run) =====
-  document.getElementById('registrationForm').addEventListener('submit', async function(e){
-    e.preventDefault();
+document.getElementById('registrationForm').addEventListener('submit', async function(e){
+  e.preventDefault();
 
-    const genderEl = document.querySelector('input[name="gender"]:checked');
-    const regGroupEl = document.querySelector('input[name="registrationGroup"]:checked');
-    if (!regGroupEl){ showMessage('Vui lòng chọn KHỐI đăng ký.', 'error'); return; }
-    if (!genderEl){ showMessage('Vui lòng chọn GIỚI TÍNH.', 'error'); return; }
+  const genderEl = document.querySelector('input[name="gender"]:checked');
+  const regGroupEl = document.querySelector('input[name="registrationGroup"]:checked');
+  if (!regGroupEl){ showMessage('Vui lòng chọn KHỐI đăng ký.', 'error'); return; }
+  if (!genderEl){ showMessage('Vui lòng chọn GIỚI TÍNH.', 'error'); return; }
 
-    // QUAN TRỌNG: xác định trạng thái "Chưa rửa tội"
-    const notBaptized = !!document.getElementById('notBaptized').checked;
+  // Lấy trạng thái “Chưa rửa tội”
+  const notBaptized = !!document.getElementById('notBaptized').checked;
 
-    const formData = {
-      name: document.getElementById('name').value || '',
-      dob: document.getElementById('dob').value || '',
-      birthPlace: getBirthPlace(),
-      gender: genderEl.value,
-      registrationGroup: regGroupEl.value,
-      classRegistration: document.getElementById('classRegistration').value || '',
+  const formData = {
+    name: document.getElementById('name').value || '',
+    dob: document.getElementById('dob').value || '',
+    birthPlace: getBirthPlace(),
+    gender: genderEl.value,
+    registrationGroup: regGroupEl.value,
+    classRegistration: document.getElementById('classRegistration').value || '',
 
-      // Nếu tick "Chưa rửa tội" → đồng bộ 3 cột đều ghi "Chưa rửa tội"
-      notBaptized,
-      baptismDate: notBaptized ? 'Chưa rửa tội' : (document.getElementById('baptismDate').value || ''),
-      baptismBook: notBaptized ? 'Chưa rửa tội' : getBaptismBook(),
-      baptismPlace: notBaptized ? 'Chưa rửa tội' : getBaptismPlace(),
+    notBaptized,
+    baptismDate: notBaptized ? 'Chưa rửa tội' : (document.getElementById('baptismDate').value || ''),
+    baptismBook: notBaptized ? 'Chưa rửa tội' : getBaptismBook(),
+    baptismPlace: notBaptized ? 'Chưa rửa tội' : getBaptismPlace(),
 
-      fatherName: document.getElementById('fatherName').value || '',
-      motherName: document.getElementById('motherName').value || '',
-      parish: document.getElementById('parish').value || '',
-      fatherPhone: document.getElementById('fatherPhone').value || '',
-      motherPhone: document.getElementById('motherPhone').value || '',
-      address: document.getElementById('address').value || '',
-      nameGLV: document.getElementById('nameGLV').value || '',
-      notes: document.getElementById('notes').value || ''
-    };
+    fatherName: document.getElementById('fatherName').value || '',
+    motherName: document.getElementById('motherName').value || '',
+    parish: document.getElementById('parish').value || '',
+    fatherPhone: document.getElementById('fatherPhone').value || '',
+    motherPhone: document.getElementById('motherPhone').value || '',
+    address: document.getElementById('address').value || '',
+    nameGLV: document.getElementById('nameGLV').value || '',
+    notes: document.getElementById('notes').value || ''
+  };
 
-    showMessage('Đang gửi...', 'success');
+  // UI: khoá nút & báo đang gửi
+  const btn = document.querySelector('.btn-submit');
+  const oldBtnText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
+  showMessage('Đang gửi...', 'success');
 
-    // Nếu KHÔNG chạy bên trong Apps Script → dùng fetch
+  // Helper: xử lý sau khi thành công (reset + scroll top + focus tên)
+  function resetAndReady(){
+    document.getElementById('registrationForm').reset();
+    document.querySelectorAll('.disabled').forEach(el => el.classList.remove('disabled'));
+    updateClassOptions();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('name').focus();
+  }
+
+  try {
+    // Nếu KHÔNG chạy trong Apps Script IFrame → dùng fetch + timeout
     if (!(window.google && google.script && google.script.run)) {
-      try {
-        const res = await fetch(SCRIPT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // tránh preflight
-          body: JSON.stringify(formData)
-        });
-        const json = await res.json();
-        if (json && json.ok) {
-          showMessage('Đăng ký thành công! Dữ liệu đã lưu vào Google Sheet.', 'success');
-          document.getElementById('registrationForm').reset();
-          document.querySelectorAll('.disabled').forEach(el => el.classList.remove('disabled'));
-          updateClassOptions();
-        } else {
-          showMessage('Có lỗi xảy ra khi lưu dữ liệu.', 'error');
-        }
-      } catch (err) {
-        showMessage('Lỗi khi gửi: ' + err, 'error');
+      const controller = new AbortController();
+      const timeoutMs = 10000; // 10s
+      const to = setTimeout(() => controller.abort(), timeoutMs);
+
+      const res = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // tránh preflight
+        body: JSON.stringify(formData),
+        signal: controller.signal
+      }).finally(() => clearTimeout(to));
+
+      const json = await res.json().catch(()=>null);
+
+      if (json && json.ok) {
+        showMessage('Đăng ký thành công! Dữ liệu đã lưu vào Google Sheet.', 'success');
+        resetAndReady();
+      } else {
+        showMessage('Có lỗi khi lưu dữ liệu. Vui lòng thử lại.', 'error');
       }
       return;
     }
@@ -450,18 +465,29 @@ document.addEventListener('DOMContentLoaded', function() {
       .withSuccessHandler(res => {
         if (res && res.ok){
           showMessage('Đăng ký thành công! Dữ liệu đã lưu vào Google Sheet.', 'success');
-          document.getElementById('registrationForm').reset();
-          document.querySelectorAll('.disabled').forEach(el => el.classList.remove('disabled'));
-          updateClassOptions();
+          resetAndReady();
         } else {
-          showMessage('Có lỗi xảy ra khi lưu dữ liệu.', 'error');
+          showMessage('Có lỗi khi lưu dữ liệu. Vui lòng thử lại.', 'error');
         }
       })
       .withFailureHandler(err => {
         showMessage('Lỗi: ' + (err && err.message ? err.message : err), 'error');
       })
       .saveToSheet(formData);
-  });
+
+  } catch (err) {
+    // Timeout / mạng chập chờn
+    if (err.name === 'AbortError') {
+      showMessage('Hệ thống bận (quá 10 giây). Vui lòng gửi lại.', 'error');
+    } else {
+      showMessage('Lỗi khi gửi: ' + err, 'error');
+    }
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = oldBtnText;
+  }
+});
+
 
   // ===== Helpers lấy giá trị =====
   function getBirthPlace(){
@@ -483,6 +509,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
 
 
 
