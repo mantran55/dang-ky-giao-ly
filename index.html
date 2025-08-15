@@ -395,25 +395,29 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!genderEl){ showMessage('Vui lòng chọn GIỚI TÍNH.', 'error'); return; }
 
     const formData = {
-      name: document.getElementById('name').value || '',
-      dob: document.getElementById('dob').value || '',
-      birthPlace: getBirthPlace(),
-      gender: genderEl.value,
-      registrationGroup: regGroupEl.value,
-      classRegistration: document.getElementById('classRegistration').value || '',
-      notBaptized: !!document.getElementById('notBaptized').checked,
-      baptismDate: document.getElementById('baptismDate').value || '',
-      baptismBook: getBaptismBook(),
-      baptismPlace: getBaptismPlace(),
-      fatherName: document.getElementById('fatherName').value || '',
-      motherName: document.getElementById('motherName').value || '',
-      parish: document.getElementById('parish').value || '',
-      fatherPhone: document.getElementById('fatherPhone').value || '',
-      motherPhone: document.getElementById('motherPhone').value || '',
-      address: document.getElementById('address').value || '',
-      nameGLV: document.getElementById('nameGLV').value || '',
-      notes: document.getElementById('notes').value || ''
-    };
+    name: document.getElementById('name').value || '',
+    dob: document.getElementById('dob').value || '',
+    birthPlace: getBirthPlace(),
+    gender: (document.querySelector('input[name="gender"]:checked')||{}).value || '',
+    registrationGroup: (document.querySelector('input[name="registrationGroup"]:checked')||{}).value || '',
+    classRegistration: document.getElementById('classRegistration').value || '',
+
+    // ↓↓↓ CHỖ QUAN TRỌNG ↓↓↓
+    notBaptized, // vẫn gửi lên nếu cần dùng
+    baptismDate: notBaptized ? 'Chưa rửa tội' : (document.getElementById('baptismDate').value || ''),
+    baptismBook: notBaptized ? 'Chưa rửa tội' : getBaptismBook(),
+    baptismPlace: notBaptized ? 'Chưa rửa tội' : getBaptismPlace(),
+    // ↑↑↑ CHỖ QUAN TRỌNG ↑↑↑
+
+    fatherName: document.getElementById('fatherName').value || '',
+    motherName: document.getElementById('motherName').value || '',
+    parish: document.getElementById('parish').value || '',
+    fatherPhone: document.getElementById('fatherPhone').value || '',
+    motherPhone: document.getElementById('motherPhone').value || '',
+    address: document.getElementById('address').value || '',
+    nameGLV: document.getElementById('nameGLV').value || '',
+    notes: document.getElementById('notes').value || ''
+  };
 
     showMessage('Đang gửi...', 'success');
 
@@ -477,6 +481,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
 
 
 
