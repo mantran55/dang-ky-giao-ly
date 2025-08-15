@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Đăng Ký Giáo Dân</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --primary-color:#1a5276; --secondary-color:#2980b9; --accent-color:#3498db; --light-color:#ecf0f1; --dark-color:#2c3e50; --success-color:#27ae60; --error-color:#e74c3c; --border-radius:8px; --box-shadow:0 4px 6px rgba(0,0,0,.1); --transition:all .3s ease; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Roboto',sans-serif; background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%); min-height:100vh; padding:20px; line-height:1.6; color:var(--dark-color); }
+    .form-container { max-width:800px; margin:0 auto; background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.15); overflow:hidden; }
+    .header { background:linear-gradient(135deg,var(--primary-color),var(--secondary-color)); color:#fff; text-align:center; padding:30px 20px; }
+    h1 { font-family:'Montserrat',sans-serif; font-size:28px; font-weight:700; margin-bottom:5px; letter-spacing:1px; }
+    h2 { font-family:'Montserrat',sans-serif; font-size:22px; font-weight:600; margin-bottom:10px; letter-spacing:.5px; }
+    .subtitle { font-size:16px; font-weight:300; font-style:italic; opacity:.9; max-width:80%; margin:0 auto; }
+    .form-content { padding:30px; }
+    .section { background:#f9fafb; border-radius:var(--border-radius); padding:20px; margin-bottom:25px; border:1px solid #e2e8f0; transition:var(--transition); }
+    .section:hover { box-shadow:var(--box-shadow); transform:translateY(-2px); }
+    .section-title { font-family:'Montserrat',sans-serif; font-size:18px; font-weight:600; color:var(--primary-color); margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid var(--accent-color); display:flex; align-items:center; gap:10px; }
+    .section-title i { color:var(--accent-color); }
+    .form-group { margin-bottom:20px; }
+    label { display:block; margin-bottom:8px; font-weight:500; color:var(--dark-color); font-size:15px; }
+    input, select, textarea { width:100%; padding:12px 15px; border:1px solid #ddd; border-radius:var(--border-radius); font-size:15px; font-family:'Roboto',sans-serif; transition:var(--transition); }
+    input:focus, select:focus, textarea:focus { outline:none; border-color:var(--accent-color); box-shadow:0 0 0 3px rgba(52,152,219,.2); }
+    .checkbox-group, .radio-group { display:flex; gap:20px; flex-wrap:wrap; margin-top:10px; }
+    .checkbox-item, .radio-item { display:flex; align-items:center; gap:8px; cursor:pointer; }
+    .checkbox-item input, .radio-item input { width:auto; cursor:pointer; }
+    .location-group { display:flex; flex-direction:column; gap:15px; }
+    .location-options { display:flex; gap:20px; flex-wrap:wrap; }
+    .location-text { position:relative; }
+    .location-prefix { position:absolute; left:15px; top:50%; transform:translateY(-50%); color:#7f8c8d; font-weight:500; }
+    .location-input { padding-left:90px; }
+    .btn-submit { background:linear-gradient(135deg,var(--secondary-color),var(--accent-color)); color:#fff; border:none; padding:15px 20px; border-radius:var(--border-radius); cursor:pointer; font-size:16px; font-weight:600; width:100%; transition:var(--transition); text-transform:uppercase; letter-spacing:1px; margin-top:10px; }
+    .btn-submit:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(52,152,219,.4); }
+    .btn-submit:active { transform:translateY(0); }
+    .message { margin-top:20px; padding:15px; border-radius:var(--border-radius); display:none; font-weight:500; animation:slideDown .3s ease; }
+    @keyframes slideDown { from { opacity:0; transform:translateY(-10px);} to { opacity:1; transform:translateY(0);} }
+    .success { background:#d4edda; color:var(--success-color); border:1px solid #c3e6cb; }
+    .error { background:#f8d7da; color:var(--error-color); border:1px solid #f5c6cb; }
+    .disabled { background:#f8f9fa; color:#6c757d; cursor:not-allowed; }
+    .baptism-section { background:#f0f7ff; border-left:4px solid var(--accent-color); }
+    .registration-section { background:#fff8e1; border-left:4px solid #ffb300; }
+    .class-section { background:#f1f8e9; border-left:4px solid #8bc34a; }
+    .autocomplete-container { position:relative; }
+    .autocomplete-suggestions { position:absolute; top:100%; left:0; right:0; max-height:200px; overflow-y:auto; background:#fff; border:1px solid #ddd; border-top:none; border-radius:0 0 var(--border-radius) var(--border-radius); z-index:1000; display:none; box-shadow:0 4px 8px rgba(0,0,0,.1); }
+    .autocomplete-suggestion { padding:12px 15px; cursor:pointer; transition:var(--transition); }
+    .autocomplete-suggestion:hover { background:#f0f7ff; color:var(--primary-color); }
+    .autocomplete-suggestion.selected { background:#e0e0e0; }
+    @media (max-width:768px){ .form-container{ margin:10px; border-radius:8px;} .header{ padding:20px 15px;} h1{ font-size:24px;} h2{ font-size:20px;} .form-content{ padding:20px;} .section{ padding:15px; margin-bottom:20px;} .location-options{ flex-direction:column; gap:10px;} .checkbox-group,.radio-group{ flex-direction:column; gap:10px; } }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="header">
+      <h1>ĐĂNG KÝ GIÁO LÝ 2025-2026</h1>
+      <h2>GIÁO XỨ BIÊN HOÀ</h2>
+      <p class="subtitle">Xin Anh Chị GLV nhập các thông tin thật chính xác dựa vào sổ GĐCG. Xin cảm ơn!</p>
+    </div>
+
+    <div class="form-content">
+      <form id="registrationForm">
+        <div class="section registration-section">
+          <div class="section-title"><i class="fas fa-graduation-cap"></i> Đăng ký khối</div>
+          <div class="form-group">
+            <label>Chọn khối đăng ký:</label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input type="radio" id="khaiTam" name="registrationGroup" value="Khai Tâm" required>
+                <label for="khaiTam">Khai Tâm</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="xungToiRuocLe" name="registrationGroup" value="Xưng Tội Rước Lễ">
+                <label for="xungToiRuocLe">Xưng Tội Rước Lễ</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><i class="fas fa-user"></i> Thông Tin Cá Nhân</div>
+          <div class="form-group">
+            <label for="name">Tên Thánh, Họ và tên:</label>
+            <input type="text" id="name" required placeholder="Đaminh Trần Minh A">
+          </div>
+
+          <div class="form-group">
+            <label for="dob">Ngày sinh:</label>
+            <input type="text" id="dob" placeholder="GLV nhập 1/1/2012 hoặc 112012 đều được" required>
+          </div>
+
+          <div class="form-group">
+            <label>Nơi Sinh:</label>
+            <div class="location-group">
+              <div class="location-options">
+                <div class="checkbox-item">
+                  <input type="checkbox" id="birthPlace1" name="birthPlace" value="Đồng Nai">
+                  <label for="birthPlace1">Đồng Nai</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="birthPlace2" name="birthPlace" value="TP HCM">
+                  <label for="birthPlace2">TP HCM</label>
+                </div>
+              </div>
+              <div class="location-text autocomplete-container">
+                <!-- SỬA class về location-input -->
+                <input type="text" id="birthPlaceOther" class="location-input" placeholder="Nhập hoặc chọn tỉnh/thành khác">
+                <!-- SỬA class về autocomplete-suggestions -->
+                <div id="birthPlaceSuggestions" class="autocomplete-suggestions"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Giới tính:</label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input type="radio" id="male" name="gender" value="Nam" required>
+                <label for="male">Nam</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="female" name="gender" value="Nữ">
+                <label for="female">Nữ</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section baptism-section">
+          <div class="section-title"><i class="fas fa-church"></i> Thông Tin Rửa Tội</div>
+          <div class="form-group">
+            <label>Ngày rửa tội:</label>
+            <div class="checkbox-item">
+              <input type="checkbox" id="notBaptized">
+              <label for="notBaptized">Chưa rửa tội</label>
+            </div>
+            <input type="text" id="baptismDate" placeholder="GLV nhập 1/1/2012 hoặc 112012 đều được">
+          </div>
+
+          <div class="form-group">
+            <label>Sổ Rửa tội:</label>
+            <div class="checkbox-item">
+              <input type="checkbox" id="baptismBookNot">
+              <label for="baptismBookNot">Chưa rửa tội</label>
+            </div>
+            <input type="text" id="baptismBook" placeholder="GLV nhập số sổ rửa tội">
+          </div>
+
+          <div class="form-group">
+            <label>Nơi Rửa Tội:</label>
+            <div class="checkbox-item">
+              <input type="checkbox" id="baptismPlaceNot">
+              <label for="baptismPlaceNot">Chưa rửa tội</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="baptismPlaceBienHoa" value="Giáo Xứ Biên Hoà">
+              <label for="baptismPlaceBienHoa">Giáo Xứ Biên Hoà</label>
+            </div>
+            <div class="location-text">
+              <span class="location-prefix">Giáo Xứ</span>
+              <input type="text" id="baptismPlaceOther" class="location-input" placeholder="Chỉ nhập tên giáo xứ">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><i class="fas fa-users"></i> Thông Tin Gia Đình</div>
+          <div class="form-group">
+            <label for="fatherName">Tên Thánh, Họ và tên Cha:</label>
+            <input type="text" id="fatherName" required placeholder="Đaminh Trần Minh A">
+          </div>
+
+          <div class="form-group">
+            <label for="motherName">Tên Thánh, Họ và tên Mẹ:</label>
+            <input type="text" id="motherName" required placeholder="Maria Trần Minh A">
+          </div>
+
+          <div class="form-group">
+            <label for="parish">Giáo họ:</label>
+            <input type="text" id="parish" required placeholder="Nhập giáo họ">
+          </div>
+
+          <div class="form-group">
+            <label for="fatherPhone">Số điện thoại Cha:</label>
+            <input type="text" id="fatherPhone" required placeholder="0908123456">
+          </div>
+
+          <div class="form-group">
+            <label for="motherPhone">Số điện thoại Mẹ:</label>
+            <input type="text" id="motherPhone" required placeholder="0908123456">
+          </div>
+
+          <div class="form-group">
+            <label for="address">Địa chỉ nhà:</label>
+            <input type="text" id="address" required placeholder="Nhập địa chỉ">
+          </div>
+        </div>
+
+        <div class="section class-section">
+          <div class="section-title"><i class="fas fa-school"></i> Lớp đăng ký</div>
+          <div class="form-group">
+            <label for="classRegistration">Chọn lớp:</label>
+            <select id="classRegistration" disabled>
+              <option value="">Vui lòng chọn khối đăng ký trước</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="nameGLV">GLV nhập liệu:</label>
+            <input type="text" id="nameGLV" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Ghi chú:</label>
+          <textarea id="notes" rows="3" placeholder="Nhập ghi chú (nếu có)"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Gửi Đăng Ký</button>
+      </form>
+      <div id="message" class="message"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // ===== DỮ LIỆU TĨNH =====
+      const provinces = ["An Giang","Bà Rịa - Vũng Tàu","Bắc Giang","Bắc Kạn","Bạc Liêu","Bắc Ninh","Bến Tre","Bình Định","Bình Dương","Bình Phước","Bình Thuận","Cà Mau","Cao Bằng","Đắk Lắk","Đắk Nông","Điện Biên","Đồng Tháp","Gia Lai","Hà Giang","Hà Nam","Hà Tĩnh","Hải Dương","Hậu Giang","Hòa Bình","Hưng Yên","Khánh Hòa","Kiên Giang","Kon Tum","Lai Châu","Lâm Đồng","Lạng Sơn","Lào Cai","Long An","Nam Định","Nghệ An","Ninh Bình","Ninh Thuận","Phú Thọ","Quảng Bình","Quảng Nam","Quảng Ngãi","Quảng Ninh","Quảng Trị","Sóc Trăng","Sơn La","Tây Ninh","Thái Bình","Thái Nguyên","Thanh Hóa","Thừa Thiên Huế","Tiền Giang","Trà Vinh","Tuyên Quang","Vĩnh Long","Vĩnh Phúc","Yên Bái","Phú Yên","Cần Thơ","Đà Nẵng","Hà Nội","Hải Phòng"];
+      const khaiTamClasses = ["Khai Tâm 1A","Khai Tâm 1B","Khai Tâm 1C","Khai Tâm 1D","Khai Tâm 1E","Khai Tâm 2A","Khai Tâm 2B","Khai Tâm 2C","Khai Tâm 2D","Khai Tâm 2E"];
+      const xungToiClasses = ["Xưng Tội 1A","Xưng Tội 1B","Xưng Tội 1C","Xưng Tội 1D","Xưng Tội 1E","Xưng Tội 2A","Xưng Tội 2B","Xưng Tội 2C","Xưng Tội 2D"];
+
+      // ===== HELPERS =====
+      function formatName(name){ return name.replace(/\w\S*/g, t => t.charAt(0).toUpperCase() + t.substr(1).toLowerCase()); }
+      function formatDate(dateStr){
+        let clean = (dateStr || '').replace(/\D/g,'');
+        if (clean.length === 8) return `${clean.slice(0,2)}.${clean.slice(2,4)}.${clean.slice(4,8)}`;
+        let parts = (dateStr || '').split(/[\/\-\.]/);
+        if (parts.length === 3) return `${parts[0].padStart(2,'0')}.${parts[1].padStart(2,'0')}.${parts[2]}`;
+        return dateStr || '';
+      }
+      function formatPhone(phone){
+        let c = (phone || '').replace(/\D/g,'');
+        return c.length >= 6 ? `${c.slice(0,4)}.${c.slice(4,7)}.${c.slice(7,10)}` : (phone || '');
+      }
+      function showMessage(text, type){
+        const el = document.getElementById('message');
+        el.textContent = text; el.className = 'message ' + type; el.style.display = 'block';
+        setTimeout(() => { el.style.display = 'none'; }, 5000);
+      }
+
+      // ===== AUTOCOMPLETE NƠI SINH =====
+      const birthPlaceInput = document.getElementById('birthPlaceOther');
+      const suggestionsContainer = document.getElementById('birthPlaceSuggestions');
+      let currentFocus = -1;
+
+      birthPlaceInput.addEventListener('input', function(){
+        const value = this.value.toLowerCase();
+        suggestionsContainer.innerHTML = '';
+        currentFocus = -1;
+        if (!value){ suggestionsContainer.style.display = 'none'; return; }
+        const filtered = provinces.filter(p => p.toLowerCase().includes(value));
+        if (filtered.length){
+          suggestionsContainer.style.display = 'block';
+          filtered.forEach(p => {
+            const item = document.createElement('div');
+            item.classList.add('autocomplete-suggestion');
+            item.textContent = p;
+            item.addEventListener('click', function(){
+              birthPlaceInput.value = p;
+              suggestionsContainer.style.display = 'none';
+              document.querySelectorAll('input[name="birthPlace"]').forEach(cb => cb.checked = false);
+            });
+            suggestionsContainer.appendChild(item);
+          });
+        } else {
+          suggestionsContainer.style.display = 'none';
+        }
+      });
+      birthPlaceInput.addEventListener('keydown', function(e){
+        const items = suggestionsContainer.getElementsByClassName('autocomplete-suggestion');
+        if (e.key === 'ArrowDown'){ currentFocus++; addActive(items); }
+        else if (e.key === 'ArrowUp'){ currentFocus--; addActive(items); }
+        else if (e.key === 'Enter'){ e.preventDefault(); if (currentFocus > -1) items[currentFocus].click(); }
+      });
+      function addActive(items){ if (!items) return; removeActive(items); if (currentFocus >= items.length) currentFocus = 0; if (currentFocus < 0) currentFocus = items.length - 1; items[currentFocus].classList.add('selected'); }
+      function removeActive(items){ for (let i=0;i<items.length;i++) items[i].classList.remove('selected'); }
+      document.addEventListener('click', e => { if (e.target !== birthPlaceInput) suggestionsContainer.style.display = 'none'; });
+
+      // ===== FORMAT VÀ RÀNG BUỘC UI =====
+      document.getElementById('name').addEventListener('blur', function(){ this.value = formatName(this.value); });
+      document.getElementById('fatherName').addEventListener('blur', function(){ this.value = formatName(this.value); });
+      document.getElementById('motherName').addEventListener('blur', function(){ this.value = formatName(this.value); });
+      document.getElementById('parish').addEventListener('blur', function(){ this.value = formatName(this.value); });
+      document.getElementById('dob').addEventListener('blur', function(){ this.value = formatDate(this.value); });
+      document.getElementById('baptismDate').addEventListener('blur', function(){ this.value = formatDate(this.value); });
+      document.getElementById('fatherPhone').addEventListener('blur', function(){ this.value = formatPhone(this.value); });
+      document.getElementById('motherPhone').addEventListener('blur', function(){ this.value = formatPhone(this.value); });
+
+      const khaiTamCheckbox = document.getElementById('khaiTam');
+      const xungToiCheckbox = document.getElementById('xungToiRuocLe');
+      const classSelect = document.getElementById('classRegistration');
+
+      function updateClassOptions(){
+        const kt = khaiTamCheckbox.checked;
+        const xt = xungToiCheckbox.checked;
+        classSelect.innerHTML = '';
+        if (!kt && !xt){
+          classSelect.disabled = true;
+          const option = document.createElement('option');
+          option.value = ''; option.textContent = 'Vui lòng chọn khối đăng ký trước';
+          classSelect.appendChild(option);
+        } else {
+          classSelect.disabled = false;
+          const defaultOption = document.createElement('option');
+          defaultOption.value = ''; defaultOption.textContent = '-- Chọn lớp --';
+          classSelect.appendChild(defaultOption);
+          if (kt){
+            const g = document.createElement('optgroup'); g.label = 'Khai Tâm';
+            khaiTamClasses.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; g.appendChild(o); });
+            classSelect.appendChild(g);
+          }
+          if (xt){
+            const g = document.createElement('optgroup'); g.label = 'Xưng Tội Rước Lễ';
+            xungToiClasses.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; g.appendChild(o); });
+            classSelect.appendChild(g);
+          }
+        }
+      }
+      khaiTamCheckbox.addEventListener('change', updateClassOptions);
+      xungToiCheckbox.addEventListener('change', updateClassOptions);
+      updateClassOptions(); // chạy lần đầu
+
+      // “Chưa rửa tội” → khóa/mở các ô liên quan
+      document.getElementById('notBaptized').addEventListener('change', function(){
+        const baptismDate = document.getElementById('baptismDate');
+        const baptismBookNot = document.getElementById('baptismBookNot');
+        const baptismBook = document.getElementById('baptismBook');
+        const baptismPlaceNot = document.getElementById('baptismPlaceNot');
+        const baptismPlaceBienHoa = document.getElementById('baptismPlaceBienHoa');
+        const baptismPlaceOther = document.getElementById('baptismPlaceOther');
+        if (this.checked){
+          baptismDate.disabled = true; baptismDate.value=''; baptismDate.classList.add('disabled');
+          baptismBookNot.checked = true; baptismPlaceNot.checked = true;
+          baptismBookNot.disabled = true; baptismBook.disabled = true; baptismBook.value=''; baptismBook.classList.add('disabled');
+          baptismPlaceNot.disabled = true; baptismPlaceBienHoa.disabled = true; baptismPlaceBienHoa.checked = false;
+          baptismPlaceOther.disabled = true; baptismPlaceOther.value=''; baptismPlaceOther.classList.add('disabled');
+        } else {
+          baptismDate.disabled = false; baptismDate.classList.remove('disabled');
+          baptismBookNot.checked = false; baptismPlaceNot.checked = false;
+          baptismBookNot.disabled = false; baptismBook.disabled = false; baptismBook.classList.remove('disabled');
+          baptismPlaceNot.disabled = false; baptismPlaceBienHoa.disabled = false; baptismPlaceOther.disabled = false; baptismPlaceOther.classList.remove('disabled');
+        }
+      });
+
+      // “Giáo Xứ Biên Hoà” → khóa ô khác
+      document.getElementById('baptismPlaceBienHoa').addEventListener('change', function(){
+        const other = document.getElementById('baptismPlaceOther');
+        if (this.checked){ other.disabled = true; other.value=''; other.classList.add('disabled'); }
+        else { other.disabled = false; other.classList.remove('disabled'); }
+      });
+
+      // Checkbox nơi sinh ↔ ô text nơi sinh
+      document.querySelectorAll('input[name="birthPlace"]').forEach(cb => {
+        cb.addEventListener('change', function(){
+          const other = document.getElementById('birthPlaceOther');
+          if (this.checked){
+            other.disabled = true; other.value=''; other.classList.add('disabled'); suggestionsContainer.style.display='none';
+            document.querySelectorAll('input[name="birthPlace"]').forEach(x => { if (x !== this) x.checked = false; });
+          } else {
+            const any = Array.from(document.querySelectorAll('input[name="birthPlace"]')).some(x => x.checked);
+            other.disabled = any; if (!any) other.classList.remove('disabled');
+          }
+        });
+      });
+      birthPlaceInput.addEventListener('input', function(){
+        if (this.value.trim() !== ''){
+          document.querySelectorAll('input[name="birthPlace"]').forEach(cb => cb.checked = false);
+          this.classList.remove('disabled');
+        }
+      });
+
+      // ===== SUBMIT → Apps Script =====
+      document.getElementById('registrationForm').addEventListener('submit', function(e){
+        e.preventDefault();
+
+        const genderEl = document.querySelector('input[name="gender"]:checked');
+        const regGroupEl = document.querySelector('input[name="registrationGroup"]:checked');
+        if (!regGroupEl){ showMessage('Vui lòng chọn KHỐI đăng ký.', 'error'); return; }
+        if (!genderEl){ showMessage('Vui lòng chọn GIỚI TÍNH.', 'error'); return; }
+
+        const formData = {
+          name: document.getElementById('name').value || '',
+          dob: document.getElementById('dob').value || '',
+          birthPlace: getBirthPlace(),
+          gender: genderEl.value,
+          registrationGroup: regGroupEl.value,
+          classRegistration: document.getElementById('classRegistration').value || '',
+          notBaptized: !!document.getElementById('notBaptized').checked,
+          baptismDate: document.getElementById('baptismDate').value || '',
+          baptismBook: getBaptismBook(),
+          baptismPlace: getBaptismPlace(),
+          fatherName: document.getElementById('fatherName').value || '',
+          motherName: document.getElementById('motherName').value || '',
+          parish: document.getElementById('parish').value || '',
+          fatherPhone: document.getElementById('fatherPhone').value || '',
+          motherPhone: document.getElementById('motherPhone').value || '',
+          address: document.getElementById('address').value || '',
+          nameGLV: document.getElementById('nameGLV').value || '',
+          notes: document.getElementById('notes').value || ''
+        };
+
+        showMessage('Đang gửi...', 'success');
+
+        // Gọi Apps Script: cần Code.gs có hàm saveToSheet(formData)
+        google.script.run
+          .withSuccessHandler(res => {
+            if (res && res.ok){
+              showMessage('Đăng ký thành công! Dữ liệu đã lưu vào Google Sheet.', 'success');
+              document.getElementById('registrationForm').reset();
+              document.querySelectorAll('.disabled').forEach(el => el.classList.remove('disabled'));
+              updateClassOptions();
+            } else {
+              showMessage('Có lỗi xảy ra khi lưu dữ liệu.', 'error');
+            }
+          })
+          .withFailureHandler(err => {
+            showMessage('Lỗi: ' + (err && err.message ? err.message : err), 'error');
+          })
+          .saveToSheet(formData);
+      });
+
+      // ===== Helpers lấy giá trị =====
+      function getBirthPlace(){
+        const checked = document.querySelector('input[name="birthPlace"]:checked');
+        return checked ? checked.value : (document.getElementById('birthPlaceOther').value || '');
+      }
+      function getBaptismBook(){
+        return document.getElementById('baptismBookNot').checked ? 'Chưa rửa tội' : (document.getElementById('baptismBook').value || '');
+      }
+      function getBaptismPlace(){
+        if (document.getElementById('baptismPlaceNot').checked) return 'Chưa rửa tội';
+        if (document.getElementById('baptismPlaceBienHoa').checked) return 'Giáo Xứ Biên Hoà';
+        const other = (document.getElementById('baptismPlaceOther').value || '').trim();
+        return other ? ('Giáo Xứ ' + other) : '';
+      }
+    });
+  </script>
+</body>
+</html>
