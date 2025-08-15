@@ -237,12 +237,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // ===== HELPERS =====
   function formatName(name) {
-  return (name || '')
+  if (!name) return '';
+  return name
     .toLowerCase()
-    .replace(/(^|\s)(\p{L})(\p{L}*)/gu, (_, space, first, rest) => {
-      return space + first.toLocaleUpperCase('vi-VN') + rest;
-    });
+    .replace(/(^|\s)\p{L}/gu, m => m.toUpperCase());
 }
+
 
   function formatDate(dateStr){
     let clean = (dateStr || '').replace(/\D/g,'');
@@ -520,6 +520,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
 
 </body>
 </html>
+
 
 
 
