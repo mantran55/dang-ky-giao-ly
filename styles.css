@@ -89,7 +89,10 @@
       max-width: 80%;
       margin: 0 auto;
     }
-    
+
+       input[inputmode="numeric"], input[type="tel"] {
+      letter-spacing: 1px;
+    }
     .form-content { 
       padding: 30px; 
     }
@@ -665,6 +668,7 @@ h2 {
     font-size: 14px;
   }
 }
+
 
 
 
