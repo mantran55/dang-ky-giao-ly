@@ -5,54 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Đăng ký Giáo lý 2025-2026</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="form-container">
     <div class="header">
-      <h1>ĐĂNG KÝ GIÁO LÝ </h1>
-      <h1>2025-2026</h1>
-      <h2>GIÁO XỨ BIÊN HOÀ</h2>
-      <p class="subtitle">Xin Anh Chị GLV nhập các thông tin thật chính xác dựa vào sổ GĐCG. Xin cảm ơn!</p>
+    <div class="header-content">
+      <div class="logo-container">
+        <img id="logo" src="assets/logoTNTTBH.png" alt="Logo Giáo Xứ Biên Hoà">
+      </div>
+      <div class="title-container">
+        <div class="title-main">
+          <h1>ĐĂNG KÝ GIÁO LÝ 2025-2026</h1>
+        </div>
+        <h2>GIÁO XỨ BIÊN HOÀ</h2>
+        <p class="subtitle">Xin Anh Chị GLV nhập các thông tin thật chính xác dựa vào sổ GĐCG. Xin cảm ơn!</p>
+      </div>
     </div>
+  </div>
+
 
     <div class="form-content">
       <form id="registrationForm">
         <div class="section registration-section">
           <div class="section-title"><i class="fas fa-graduation-cap"></i> Đăng ký khối</div>
           <div class="form-group">
-            <label>Chọn khối đăng ký:</label>
+            <label-1>Chọn khối đăng ký:</label-1>
             <div class="radio-group">
               <div class="radio-item">
                 <input type="radio" id="khaiTam" name="registrationGroup" value="Khai Tâm" required>
-                <label for="khaiTam">Khai Tâm</label>
+                <label for="khaiTam" style="background-color: #e17c8d; padding: 5px 10px; border-radius: 4px; font-weight: bold;color: white;">Khai Tâm</label>
               </div>
               <div class="radio-item">
                 <input type="radio" id="xungToiRuocLe" name="registrationGroup" value="Xưng Tội Rước Lễ">
-                <label for="xungToiRuocLe">Xưng Tội Rước Lễ</label>
+                <label for="xungToiRuocLe" style="background-color: #3e913e; padding: 5px 10px; border-radius: 4px; font-weight: bold;color: white;">Xưng Tội Rước Lễ</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="themSuc" name="registrationGroup" value="Thêm Sức">
+                <label for="themSuc" style="background-color: #39709a; padding: 5px 10px; border-radius: 4px; font-weight: bold;color: white;">Thêm Sức</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="songDao" name="registrationGroup" value="Sống Đạo">
+                <label for="songDao" style="background-color: #f4d108; padding: 5px 10px; border-radius: 4px; font-weight: bold;color: white;">Sống Đạo</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="vaoDoi" name="registrationGroup" value="Vào Đời">
+                <label for="vaoDoi" style="background-color: #9f7641; padding: 5px 10px; border-radius: 4px; font-weight: bold; color: white;">Vào Đời</label>
               </div>
             </div>
           </div>
         </div>
-
+        
         <div class="section">
           <div class="section-title"><i class="fas fa-user"></i> Thông Tin Cá Nhân</div>
           <div class="form-group">
-            <label for="name">Tên Thánh, Họ và tên:</label>
+            <label-1 for="name">Tên Thánh, Họ và tên:</label-1>
             <input type="text" id="name" required placeholder="Đaminh Trần Minh A">
           </div>
-
           <div class="form-group">
-            <label for="dob">Ngày sinh:</label>
+            <label-1 for="dob">Ngày sinh:</label-1>
             <input type="text" id="dob" placeholder="GLV nhập 1/1/2012 hoặc 112012 đều được" required>
           </div>
-
           <div class="form-group">
-            <label>Nơi Sinh:</label>
+            <label-1>Nơi Sinh:</label-1>
             <div class="location-group">
               <div class="location-options">
                 <div class="checkbox-item">
@@ -65,16 +81,13 @@
                 </div>
               </div>
               <div class="location-text autocomplete-container">
-                <!-- SỬA class về location-input -->
                 <input type="text" id="birthPlaceOther" class="location-input" placeholder="Nhập hoặc chọn tỉnh/thành khác">
-                <!-- SỬA class về autocomplete-suggestions -->
                 <div id="birthPlaceSuggestions" class="autocomplete-suggestions"></div>
               </div>
             </div>
           </div>
-
           <div class="form-group">
-            <label>Giới tính:</label>
+            <label-1>Giới tính:</label-1>
             <div class="radio-group">
               <div class="radio-item">
                 <input type="radio" id="male" name="gender" value="Nam" required>
@@ -87,29 +100,28 @@
             </div>
           </div>
         </div>
-
+        
+        <!-- Thông Tin Rửa Tội - Luôn hiển thị -->
         <div class="section baptism-section">
-          <div class="section-title"><i class="fas fa-church"></i> Thông Tin Rửa Tội</div>
+          <div class="section-title"><i class="fas fa"></i>1. Thông Tin Rửa Tội</div>
           <div class="form-group">
-            <label>Ngày rửa tội:</label>
+            <label-1>Ngày rửa tội:</label-1>
             <div class="checkbox-item">
               <input type="checkbox" id="notBaptized">
               <label for="notBaptized">Chưa rửa tội</label>
             </div>
             <input type="text" id="baptismDate" placeholder="GLV nhập 1/1/2012 hoặc 112012 đều được">
           </div>
-
           <div class="form-group">
-            <label>Sổ Rửa tội:</label>
+            <label-1>Sổ Rửa tội:</label-1>
             <div class="checkbox-item">
               <input type="checkbox" id="baptismBookNot">
               <label for="baptismBookNot">Chưa rửa tội</label>
             </div>
             <input type="text" id="baptismBook" placeholder="GLV nhập số sổ rửa tội">
           </div>
-
           <div class="form-group">
-            <label>Nơi Rửa Tội:</label>
+            <label-1>Nơi Rửa Tội:</label-1>
             <div class="checkbox-item">
               <input type="checkbox" id="baptismPlaceNot">
               <label for="baptismPlaceNot">Chưa rửa tội</label>
@@ -124,23 +136,82 @@
             </div>
           </div>
         </div>
-
+        
+        <!-- ====== THÔNG TIN XƯNG TỘI RƯỚC LỄ ====== -->
+        <div id="xtrlSection" class="section baptismdf-section" style="display:none;">
+          <div class="section-title">
+            <i class="fas fa"></i>2. Thông Tin Xưng Tội Rước Lễ
+          </div>
+          <!-- Ngày XTRLLĐ -->
+          <div class="form-group">
+            <label-1>Ngày XTRLLĐ:</label-1>
+            <input type="text" id="xtrlDate" placeholder="GLV nhập 1/1/2012 hoặc 112012 đều được">
+          </div>
+          <!-- Nơi XTRLLĐ -->
+          <div class="form-group">
+            <label-1>Nơi XTRLLĐ:</label-1>
+            <div class="checkbox-item">
+              <input type="checkbox" id="xtrlPlaceBienHoa" value="Giáo Xứ Biên Hoà">
+              <label for="xtrlPlaceBienHoa">Giáo Xứ Biên Hoà</label>
+            </div>
+            <div class="location-text">
+              <span class="location-prefix">Giáo Xứ</span>
+              <input type="text" id="xtrlPlaceOther" class="location-input-2" placeholder="Chỉ nhập tên giáo xứ">
+            </div>
+          </div>
+        </div>
+        
+        <!-- ====== THÔNG TIN THÊM SỨC ====== -->
+        <div id="themSucInfoSection" class="section communion-section" style="display:none;">
+          <div class="section-title">
+            <i class="fas fa"></i>3. Thông Tin Thêm Sức
+          </div>
+          <!-- Ngày Thêm Sức -->
+          <div class="form-group">
+            <label-1>Ngày Thêm Sức:</label-1>
+            <div class="checkbox-item">
+              <input type="checkbox" id="notThemSuc">
+              <label for="notThemSuc">Chưa Thêm Sức</label>
+            </div>
+            <input type="text" id="themSucDate" placeholder="GLV nhập 1/1/2012 hoặc 112012 đều được">
+          </div>
+          <!-- Sổ Thêm Sức -->
+          <div class="form-group">
+            <label-1>Sổ Thêm Sức:</label-1>
+            <input type="text" id="themSucBook" placeholder="GLV nhập số sổ thêm sức">
+          </div>
+          <!-- Nơi Thêm Sức -->
+          <div class="form-group">
+            <label-1>Nơi Thêm Sức:</label-1>
+            <div class="checkbox-item">
+              <input type="checkbox" id="themSucPlaceNot">
+              <label for="themSucPlaceNot">Chưa Thêm Sức</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="themSucPlaceBienHoa" value="Giáo Xứ Biên Hoà">
+              <label for="themSucPlaceBienHoa">Giáo Xứ Biên Hoà</label>
+            </div>
+            <div class="location-text">
+              <span class="location-prefix">Giáo Xứ</span>
+              <input type="text" id="themSucPlaceOther" class="location-input-2" placeholder="Chỉ nhập tên giáo xứ">
+            </div>
+          </div>
+        </div>
+        
         <div class="section">
           <div class="section-title"><i class="fas fa-users"></i> Thông Tin Gia Đình</div>
           <div class="form-group">
-            <label for="fatherName">Tên Thánh, Họ và tên Cha:</label>
+            <label-1 for="fatherName">Tên Thánh, Họ và tên Cha:</label-1>
             <input type="text" id="fatherName" required placeholder="Đaminh Trần Minh A">
           </div>
-
           <div class="form-group">
-            <label for="motherName">Tên Thánh, Họ và tên Mẹ:</label>
+            <label-1 for="motherName">Tên Thánh, Họ và tên Mẹ:</label-1>
             <input type="text" id="motherName" required placeholder="Maria Trần Minh A">
           </div>
-
           <div class="form-group">
-            <label for="parish">Giáo họ:</label>
+            <label-1 for="parish">Giáo họ:</label-1>
             <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-                <select id="parish" required>
+              <select id="parish" required>
                 <option value="">-- Chọn giáo họ --</option>
                 <option>1. Andrê</option>
                 <option>2. Batôlômêô</option>
@@ -154,83 +225,66 @@
                 <option>11. Simon</option>
                 <option>12. Tađêô</option>
                 <option>13. Tôma</option>
-                </select>
-
-    <a href="#" id="parishDetailLink" class="link">Xem chi tiết Giáo họ</a>
-  </div>
+              </select>
+              <label for="text">Xem số ở đầu sổ GDCG và chọn giáo họ tương ứng</label> 
+              <img src="assets/giao-ho-1.png" alt="Ảnh 1" style="max-width:100%; border-radius:6px;">
+              <p style="margin-top:6px">
+                <a href="#" id="openParishModal">Xem nếu không có số Giáo họ</a>
+              </p>
+            </div>
           </div>
-
           <div class="form-group">
-            <label for="fatherPhone">Số điện thoại Cha:</label>
+            <label-1 for="fatherPhone">Số điện thoại Cha:</label-1>
             <input type="text" id="fatherPhone" required placeholder="0908123456">
           </div>
-
           <div class="form-group">
-            <label for="motherPhone">Số điện thoại Mẹ:</label>
+            <label-1 for="motherPhone">Số điện thoại Mẹ:</label-1>
             <input type="text" id="motherPhone" required placeholder="0908123456">
           </div>
-
           <div class="form-group">
-            <label for="address">Địa chỉ nhà:</label>
+            <label-1 for="address">Địa chỉ nhà:</label-1>
             <input type="text" id="address" required placeholder="Nhập địa chỉ">
           </div>
         </div>
-
+        
         <div class="section class-section">
-          <div class="section-title"><i class="fas fa-school"></i> Xếp Lớp Năm Học Mới</div>
+          <div class="section-title"><i class="fas fa-church"></i> Xếp Lớp Năm Học Mới</div>
           <div class="form-group">
-            <label for="classRegistration">Chọn lớp:</label>
+            <label-1 for="classRegistration">Chọn lớp:</label-1>
             <select id="classRegistration" disabled>
               <option value="">Vui lòng chọn khối đăng ký trước</option>
             </select>
           </div>
-
           <div class="form-group">
-            <label for="nameGLV">GLV nhập liệu:</label>
+            <label-1 for="nameGLV">GLV nhập liệu:</label-1>
             <input type="text" id="nameGLV" required>
           </div>
         </div>
-
+        
         <div class="form-group">
-          <label for="notes">Ghi chú:</label>
+          <label-1 for="notes">Ghi chú:</label-1>
           <textarea id="notes" rows="3" placeholder="Nhập ghi chú (nếu có)"></textarea>
         </div>
-
+        
         <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Gửi Đăng Ký</button>
       </form>
+      
       <div id="message" class="message"></div>
     </div>
   </div>
 
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-  <!-- JS -->
-  <script src="app.js"></script>
-
-    <!-- Modal xem chi tiết Giáo họ -->
-    <div id="parishModal" class="modal-overlay" aria-hidden="true">
-    <div class ="modal">
-        <button type="button" class="modal-close" aria-label="Đóng">&times;</button>
-       <div class="gallery">
-        <a href="assets/giao-ho-1.png" data-lightbox="gallery1" data-title="Ảnh 1">
-          <img src="assets/giao-ho-1.png" alt="Ảnh 1" style="width:100px">
-        </a>
-        <a href="assets/giao-ho-2.png" data-lightbox="gallery1" data-title="Ảnh 2">
-          <img src="assets/giao-ho-2.png" alt="Ảnh 2" style="width:100px">
-        </a>
-       </div>
-      </div>
-
-   
+  <div id="parishModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="parishModalTitle">
+      <button type="button" class="modal-close" aria-label="Đóng">&times;</button>
+      <h3 id="parishModalTitle">TRƯỜNG HỢP KHÔNG CÓ SỐ</h3>
+      <!-- Ảnh 1 -->
+      <a href="assets/giao-ho-2.png" data-lightbox="parishGallery" data-title="Ảnh 1: Mẫu sổ giáo họ">
+        <img src="assets/giao-ho-2.png" alt="Ảnh" style="max-width:100%; border-radius:6px;">
+      </a>
     </div>
+  </div>
 
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
-
-
-
-
-
-
