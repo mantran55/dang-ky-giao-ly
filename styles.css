@@ -171,6 +171,29 @@
       border-color: var(--accent-color);
       box-shadow: 0 0 0 3px rgba(52,152,219,.2);
     }
+
+    /* CSS cho checkbox trong section Thông Tin Rửa Tội */
+.baptism-section .checkbox-item {
+  margin-bottom: 8px;
+  padding: 3px 0;
+}
+
+/* CSS cho checkbox trong section Thông Tin Xưng Tội Rước Lễ */
+.baptism-section .checkbox-item {
+  margin-bottom: 8px;
+  padding: 3px 0;
+}
+
+.baptismdf-section .checkbox-item {
+  margin-bottom: 8px;
+  padding: 3px 0;
+}
+
+/* CSS cho checkbox trong section Thông Tin Thêm Sức */
+.communion-section .checkbox-item {
+  margin-bottom: 8px;
+  padding: 3px 0;
+}
     
     .checkbox-group, .radio-group {
       display: flex;
