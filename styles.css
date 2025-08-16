@@ -1,552 +1,41 @@
 :root {
-      --primary-color: #1a5276;
-      --secondary-color: #2980b9;
-      --accent-color: #3498db;
-      --light-color: #ecf0f1;
-      --dark-color: #2c3e50;
-      --success-color: #27ae60;
-      --error-color: #e74c3c;
-      --border-radius: 8px;
-      --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      --transition: all 0.3s ease;
-    }
-    
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
-    }
-    
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);
-      min-height: 100vh;
-      padding: 20px;
-      line-height: 1.6;
-      color: var(--dark-color);
-    }
-    
-    .form-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.15);
-      overflow: hidden;
-    }
-    
-    .header {
-       background: linear-gradient(135deg,var(--primary-color),var(--secondary-color));
-        color: #fff;
-        text-align: center;
-        padding: 20px;
-    }
+  --primary-color: #1a5276;
+  --secondary-color: #2980b9;
+  --accent-color: #3498db;
+  --light-color: #ecf0f1;
+  --dark-color: #2c3e50;
+  --success-color: #27ae60;
+  --error-color: #e74c3c;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  --transition: all 0.3s ease;
+}
 
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  line-height: 1.6;
+  color: var(--dark-color);
+}
 
-    .logo-container {
-      flex: 0 0 auto;
-      padding-right: 20px;
-    }
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  overflow: hidden;
+}
 
-    #logo {
-      height: 80px;
-      width: auto;
-      max-width: 120px;
-      object-fit: contain;
-    }
-
-    .title-container {
-      flex: 1;
-      text-align: center;
-    }
-    
-    h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 5px;
-      letter-spacing: 1px;
-    }
-    
-    h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      letter-spacing: .5px;
-    }
-    
-    .subtitle {
-      font-size: 16px;
-      font-weight: 300;
-      font-style: italic;
-      opacity: .9;
-      max-width: 80%;
-      margin: 0 auto;
-    }
-    
-    .form-content { 
-      padding: 30px; 
-    }
-    
-    .section {
-      background: #f9fafb;
-      border-radius: var(--border-radius);
-      padding: 20px;
-      margin-bottom: 25px;
-      border: 1px solid #e2e8f0;
-      transition: var(--transition);
-    }
-    
-    .section:hover { 
-      box-shadow: var(--box-shadow); 
-      transform: translateY(-2px); 
-    }
-    
-    .modal-body img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-      margin-bottom: 12px;
-    }
-    
-    .section-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--primary-color);
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--accent-color);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .section-title i { 
-      color: var(--accent-color); 
-    }
-    
-    .form-group { 
-      margin-bottom: 20px; 
-    }
-    
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
-      /* font-weight: bold !important; */
-      color: var(--dark-color);
-      font-size: 15px;
-    }
-    
-    label-1 {
-      display: block;
-      margin-bottom: 4px;
-      font-weight: 500;
-      font-weight: bold !important;
-      color: var(--dark-color);
-      font-size: 16px;
-    }
-
-
-    input, select, textarea {
-      width: 100%;
-      padding: 12px 15px;
-      margin-bottom: 4px;
-      border: 1px solid #ddd;
-      border-radius: var(--border-radius);
-      font-size: 15px;
-      font-family: 'Roboto', sans-serif;
-      transition: var(--transition);
-    }
-    
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent-color);
-      box-shadow: 0 0 0 3px rgba(52,152,219,.2);
-    }
-    
-    .checkbox-group, .radio-group {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 10px; 
-    }
-    
-    .radio-item input[type="radio"], input[type="checkbox"] {
-      margin: 0;
-      vertical-align: middle;
-      transform: scale(1);
-      margin-right: 5px;
-    }
-
-    .radio-item, .checkbox-item {
-      align-items: center;
-      gap: 8px; /* Tạo khoảng cách giữa radio/checkbox và label */
-    }
-  
-
-    .checkbox-item input[type="checkbox"] {
-      margin: 0;
-      vertical-align: middle;
-    }
-    
-    .radio-item label {
-      margin: 0;
-      vertical-align: middle;
-    }
-    
-    .checkbox-item label {
-      margin: 0;
-      vertical-align: middle;
-    }
-    
-    .communion-section{
-      background:#eef7ff;
-      border-left:4px solid #5dade2;
-    }
-    
-    .checkbox-item, .radio-item { 
-      display: flex; 
-      align-items: center; 
-      gap: 6px; 
-      cursor: pointer; 
-    }
-    
-    .checkbox-item input, .radio-item input { 
-      width: auto; 
-      cursor: pointer; 
-    }
-    
-    .location-group { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 15px; 
-    }
-    
-    .location-options { 
-      display: flex; 
-      gap: 20px; 
-      flex-wrap: wrap; 
-    }
-    
-    .location-text { 
-      position: relative; 
-    }
-    
-    .location-prefix {
-      position: absolute; 
-      left: 15px; 
-      top: 50%; 
-      transform: translateY(-50%);
-      color: #7f8c8d; 
-      font-weight: 500;
-    }
-    
-    .location-input { 
-      padding-left: 8px 12px; 
-    }
-    
-    .location-input-2 { 
-      padding-left: 90px; 
-    }
-    
-    .btn-submit {
-      background: linear-gradient(135deg,var(--secondary-color),var(--accent-color));
-      color: #fff; 
-      border: none; 
-      padding: 15px 20px;
-      border-radius: var(--border-radius); 
-      cursor: pointer;
-      font-size: 16px; 
-      font-weight: 600; 
-      width: 100%;
-      transition: var(--transition); 
-      text-transform: uppercase;
-      letter-spacing: 1px; 
-      margin-top: 10px;
-    }
-    
-    .btn-submit:hover { 
-      transform: translateY(-2px); 
-      box-shadow: 0 5px 15px rgba(52,152,219,.4); 
-    }
-    
-    .btn-submit:active { 
-      transform: translateY(0); 
-    }
-    
-    .message {
-      margin-top: 20px; 
-      padding: 15px; 
-      border-radius: var(--border-radius);
-      display: none; 
-      font-weight: 500; 
-      animation: slideDown .3s ease;
-    }
-    
-    @keyframes slideDown { 
-      from { 
-        opacity: 0; 
-        transform: translateY(-10px);
-      } to { 
-        opacity: 1; 
-        transform: translateY(0);
-      } 
-    }
-    
-    .success { 
-      background: #d4edda; 
-      color: var(--success-color); 
-      border: 1px solid #c3e6cb; 
-    }
-    
-    .error   { 
-      background: #f8d7da; 
-      color: var(--error-color); 
-      border: 1px solid #f5c6cb; 
-    }
-    
-    .disabled{ 
-      background: #f8f9fa; 
-      color: #6c757d; 
-      cursor: not-allowed; 
-    }
-    
-    .baptism-section      { 
-      background: #f4f7fb; 
-      border-left: 4px solid var(--accent-color); 
-    }
-
-    .baptismdf-section      { 
-      background: #f4fff7; 
-      border-left: 4px solid #03552d; 
-    }
-
-    
-    .registration-section { 
-      background: #ffffff; 
-      border-left: 4px solid #f29407; 
-    }
-    
-    .class-section        { 
-      background: #fefffc; 
-      border-left: 4px solid #f29407; 
-    }
-    
-    .communion-section    { 
-      background: #f4f7fb; 
-      border-left: 4px solid var(--accent-color); 
-    }
-    
-    .autocomplete-container { 
-      position: relative; 
-    }
-
-    
-    
-    .autocomplete-suggestions {
-      position: absolute; 
-      top: 100%; 
-      left: 0; 
-      right: 0; 
-      max-height: 200px; 
-      overflow-y: auto;
-      background: #fff; 
-      border: 1px solid #ddd; 
-      border-top: none;
-      border-radius: 0 0 var(--border-radius) var(--border-radius);
-      z-index: 1000; 
-      display: none; 
-      box-shadow: 0 4px 8px rgba(0,0,0,.1);
-    }
-    
-    .autocomplete-suggestion { 
-      padding: 12px 15px; 
-      cursor: pointer; 
-      transition: var(--transition); 
-    }
-    
-    .autocomplete-suggestion:hover { 
-      background: #f0f7ff; 
-      color: var(--primary-color); 
-    }
-    
-    .autocomplete-suggestion.selected { 
-      background: #e0e0e0; 
-    }
-    
-    /* Responsive */
-    @media (max-width:768px){
-      .form-container{ 
-        margin:10px; 
-        border-radius:8px; 
-      }
-      .header{ 
-        padding:20px 15px; 
-      }
-      h1{ 
-        font-size:24px; 
-      }
-      h2{ 
-        font-size:20px; 
-      }
-      .form-content{ 
-        padding:20px; 
-      }
-      .section{ 
-        padding:15px; 
-        margin-bottom:20px; 
-      }
-      .location-options{ 
-        flex-direction:column; 
-        gap:10px; 
-      }
-      .checkbox-group, .radio-group{ 
-        flex-direction:column; 
-        gap:8px; 
-      }
-
-      .header-content {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .logo-container {
-        padding-right: 0;
-        padding-bottom: 15px;
-      }
-      
-      #logo {
-        height: 60px;
-        max-width: 100px;
-      }
-
-
-
-
-    }
-    
-    .link { 
-      color: #1a73e8; 
-      text-decoration: underline; 
-      cursor: pointer; 
-    }
-    
-    /* Chỉ hiện ảnh đầu tiên, còn lại ẩn để không bị "đứng cạnh nhau" */
-    #parishModal .gallery a:not(:first-child) {
-      display: none;
-    }
-    
-    /* Modal overlay */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.5);
-      display: none;               /* ẩn mặc định */
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-    
-    .modal-overlay.show { 
-      display: flex; 
-    }
-    
-    /* Hộp modal */
-    .modal {
-      background: #fff;
-      width: 92vw;
-      max-width: 740px;            /* rộng như ảnh mẫu */
-      max-height: 86vh;
-      border-radius: 12px;
-      overflow: auto;              /* ảnh cao sẽ có scroll */
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-      padding: 18px 18px 22px;
-      position: relative;
-    }
-    
-    .modal-body { 
-      padding: 16px; 
-    }
-    
-    .modal-body img { 
-      width: 100%; 
-      height: auto; 
-      display: block; 
-      border-radius: 8px; 
-    }
-    
-    .modal-caption { 
-      margin-top: 8px; 
-      font-size: 14px; 
-      color: #555; 
-    }
-    
-    /* Nút đóng */
-    .modal-close {
-      position: absolute;
-      top: 8px; 
-      right: 10px;
-      background: transparent;
-      border: 0;
-      font-size: 28px;
-      line-height: 1;
-      cursor: pointer;
-      color: #2c3e50;
-    }
-    
-    .modal-close:hover { 
-      color:#000; 
-    }
-    
-    .modal h3 {
-      text-align: center;
-      margin: 6px 0 14px;
-      color: #133a73;
-      letter-spacing: .5px;
-    }
-    
-    .modal .gallery {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;             /* mobile tự xuống hàng */
-      justify-content: center;
-      margin-bottom: 14px;
-    }
-    
-    .modal .gallery img {
-      display: block;
-      width: 100%;
-      max-width: 320px;            /* mỗi ảnh tối đa ~nửa modal */
-      height: auto;
-      border-radius: 6px;
-      border: 1px solid #e2e8f0;
-      object-fit: contain;
-    }
-    
-    /* Chữ mô tả */
-    .modal .caption {
-      margin-top: 8px;
-      color: #555;
-      font-size: 14px;
-    }
-    
-    .lightboxOverlay, .lightbox {
-      z-index: 99999 !important; /* đảm bảo nằm trên modal */
-    }
-
-   .header {
+.header {
   background: linear-gradient(135deg,var(--primary-color),var(--secondary-color));
   color: #fff;
   padding: 25px 20px;
@@ -576,20 +65,20 @@
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  gap: 10px; /* Giảm từ 20px xuống 10px */
+  gap: 10px;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5px; /* Giảm từ 10px xuống 5px */
+  margin-bottom: 5px;
 }
 
 #logo {
   height: 90px;
   width: auto;
-  max-width: 130px; /* Giảm từ 150px xuống 130px */
+  max-width: 130px;
   object-fit: contain;
   filter: drop-shadow(0 3px 5px rgba(0,0,0,0.3));
   transition: transform 0.3s ease;
@@ -605,7 +94,7 @@
 }
 
 .title-main {
-  margin-bottom: 5px; /* Giảm từ 8px xuống 5px */
+  margin-bottom: 5px;
 }
 
 .title-main h1 {
@@ -622,7 +111,7 @@ h2 {
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   font-weight: 600;
-  margin: 3px 0 8px; /* Giảm margin từ 5px 0 12px xuống 3px 0 8px */
+  margin: 3px 0 8px;
   letter-spacing: 1px;
   color: #f0f8ff;
   text-shadow: 0 1px 3px rgba(0,0,0,0.2);
@@ -639,34 +128,431 @@ h2 {
   text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* Responsive cho header */
-@media (max-width: 768px) {
-  .header {
-    padding: 20px 15px;
+.form-content { 
+  padding: 30px; 
+}
+
+.section {
+  background: #f9fafb;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 1px solid #e2e8f0;
+  transition: var(--transition);
+}
+
+.section:hover { 
+  box-shadow: var(--box-shadow); 
+  transform: translateY(-2px); 
+}
+
+.modal-body img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title i { 
+  color: var(--accent-color); 
+}
+
+.form-group { 
+  margin-bottom: 20px; 
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark-color);
+  font-size: 15px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(52,152,219,.2);
+}
+
+/* Cải tiến cho checkbox và radio */
+.checkbox-group, .radio-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.radio-item, .checkbox-item { 
+  display: flex; 
+  align-items: center; 
+  gap: 8px;
+  margin-bottom: 8px;
+  cursor: pointer; 
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.radio-item:hover, .checkbox-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Kích thước checkbox và radio */
+input[type="radio"], input[type="checkbox"] {
+  margin: 0;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+/* Label cho checkbox và radio */
+.radio-item label, .checkbox-item label {
+  margin: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Đảm bảo khoảng cách nhất quán trong các section */
+.section .radio-item, .section .checkbox-item {
+  margin-bottom: 10px;
+}
+
+/* Các section đặc biệt */
+.baptism-section {
+  background: #f4f7fb;
+  border-left: 4px solid var(--accent-color);
+}
+
+.baptismdf-section {
+  background: #f4fff7;
+  border-left: 4px solid #03552d;
+}
+
+.registration-section {
+  background: #ffffff;
+  border-left: 4px solid #f29407;
+}
+
+.class-section {
+  background: #fefffc;
+  border-left: 4px solid #f29407;
+}
+
+.communion-section {
+  background: #f4f7fb;
+  border-left: 4px solid var(--accent-color);
+}
+
+.location-group { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
+}
+
+.location-options { 
+  display: flex; 
+  gap: 20px; 
+  flex-wrap: wrap; 
+}
+
+.location-text { 
+  position: relative; 
+}
+
+.location-prefix {
+  position: absolute; 
+  left: 15px; 
+  top: 50%; 
+  transform: translateY(-50%);
+  color: #7f8c8d; 
+  font-weight: 500;
+}
+
+.location-input { 
+  padding-left: 90px; 
+}
+
+.location-input-2 { 
+  padding-left: 90px; 
+}
+
+.btn-submit {
+  background: linear-gradient(135deg,var(--secondary-color),var(--accent-color));
+  color: #fff; 
+  border: none; 
+  padding: 15px 20px;
+  border-radius: var(--border-radius); 
+  cursor: pointer;
+  font-size: 16px; 
+  font-weight: 600; 
+  width: 100%;
+  transition: var(--transition); 
+  text-transform: uppercase;
+  letter-spacing: 1px; 
+  margin-top: 10px;
+}
+
+.btn-submit:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 5px 15px rgba(52,152,219,.4); 
+}
+
+.btn-submit:active { 
+  transform: translateY(0); 
+}
+
+.message {
+  margin-top: 20px; 
+  padding: 15px; 
+  border-radius: var(--border-radius);
+  display: none; 
+  font-weight: 500; 
+  animation: slideDown .3s ease;
+}
+
+@keyframes slideDown { 
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px);
+  } to { 
+    opacity: 1; 
+    transform: translateY(0);
+  } 
+}
+
+.success { 
+  background: #d4edda; 
+  color: var(--success-color); 
+  border: 1px solid #c3e6cb; 
+}
+
+.error   { 
+  background: #f8d7da; 
+  color: var(--error-color); 
+  border: 1px solid #f5c6cb; 
+}
+
+.disabled{ 
+  background: #f8f9fa; 
+  color: #6c757d; 
+  cursor: not-allowed; 
+}
+
+.autocomplete-container { 
+  position: relative; 
+}
+
+.autocomplete-suggestions {
+  position: absolute; 
+  top: 100%; 
+  left: 0; 
+  right: 0; 
+  max-height: 200px; 
+  overflow-y: auto;
+  background: #fff; 
+  border: 1px solid #ddd; 
+  border-top: none;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  z-index: 1000; 
+  display: none; 
+  box-shadow: 0 4px 8px rgba(0,0,0,.1);
+}
+
+.autocomplete-suggestion { 
+  padding: 12px 15px; 
+  cursor: pointer; 
+  transition: var(--transition); 
+}
+
+.autocomplete-suggestion:hover { 
+  background: #f0f7ff; 
+  color: var(--primary-color); 
+}
+
+.autocomplete-suggestion.selected { 
+  background: #e0e0e0; 
+}
+
+/* Responsive */
+@media (max-width:768px){
+  .form-container{ 
+    margin:10px; 
+    border-radius:8px; 
+  }
+  .header{ 
+    padding:20px 15px; 
+  }
+  h1{ 
+    font-size:24px; 
+  }
+  h2{ 
+    font-size:20px; 
+  }
+  .form-content{ 
+    padding:20px; 
+  }
+  .section{ 
+    padding:15px; 
+    margin-bottom:20px; 
+  }
+  .location-options{ 
+    flex-direction:column; 
+    gap:10px; 
+  }
+  .checkbox-group, .radio-group{ 
+    flex-direction:column; 
+    gap:10px;
+  }
+  .header-content {
+    flex-direction: column;
+    text-align: center;
   }
   
-  .header-content {
-    gap: 8px; /* Giảm từ 15px xuống 8px */
+  .logo-container {
+    padding-right: 0;
+    padding-bottom: 15px;
   }
   
   #logo {
-    height: 80px;
-    max-width: 110px;
+    height: 60px;
+    max-width: 100px;
   }
   
-  .title-main h1 {
-    font-size: 20px;
-  }
-  
-  h2 {
-    font-size: 20px;
-  }
-  
-  .subtitle {
-    font-size: 14px;
+  .radio-item, .checkbox-item {
+    margin-bottom: 12px;
   }
 }
 
+.link { 
+  color: #1a73e8; 
+  text-decoration: underline; 
+  cursor: pointer; 
+}
 
+/* Chỉ hiện ảnh đầu tiên, còn lại ẩn để không bị "đứng cạnh nhau" */
+#parishModal .gallery a:not(:first-child) {
+  display: none;
+}
 
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: none;               /* ẩn mặc định */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
 
+.modal-overlay.show { 
+  display: flex; 
+}
+
+/* Hộp modal */
+.modal {
+  background: #fff;
+  width: 92vw;
+  max-width: 740px;            /* rộng như ảnh mẫu */
+  max-height: 86vh;
+  border-radius: 12px;
+  overflow: auto;              /* ảnh cao sẽ có scroll */
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  padding: 18px 18px 22px;
+  position: relative;
+}
+
+.modal-body { 
+  padding: 16px; 
+}
+
+.modal-body img { 
+  width: 100%; 
+  height: auto; 
+  display: block; 
+  border-radius: 8px; 
+}
+
+.modal-caption { 
+  margin-top: 8px; 
+  font-size: 14px; 
+  color: #555; 
+}
+
+/* Nút đóng */
+.modal-close {
+  position: absolute;
+  top: 8px; 
+  right: 10px;
+  background: transparent;
+  border: 0;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #2c3e50;
+}
+
+.modal-close:hover { 
+  color:#000; 
+}
+
+.modal h3 {
+  text-align: center;
+  margin: 6px 0 14px;
+  color: #133a73;
+  letter-spacing: .5px;
+}
+
+.modal .gallery {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;             /* mobile tự xuống hàng */
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.modal .gallery img {
+  display: block;
+  width: 100%;
+  max-width: 320px;            /* mỗi ảnh tối đa ~nửa modal */
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  object-fit: contain;
+}
+
+/* Chữ mô tả */
+.modal .caption {
+  margin-top: 8px;
+  color: #555;
+  font-size: 14px;
+}
+
+.lightboxOverlay, .lightbox {
+  z-index: 99999 !important; /* đảm bảo nằm trên modal */
+}
