@@ -75,6 +75,15 @@ h2 {
 }
 .section:hover { box-shadow: var(--box-shadow); transform: translateY(-2px); }
 
+.modal-body img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 12px; /* cách giữa các ảnh */
+}
+
+
 .section-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
@@ -213,6 +222,7 @@ input:focus, select:focus, textarea:focus {
   font-size: 28px; line-height: 1; cursor: pointer; color:#444;
 }
 .modal-close:hover { color:#000; }
+
 
 
 
