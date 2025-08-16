@@ -193,6 +193,12 @@ input:focus, select:focus, textarea:focus {
 
 .link { color: #1a73e8; text-decoration: underline; cursor: pointer; }
 
+/* Chỉ hiện ảnh đầu tiên, còn lại ẩn để không bị “đứng cạnh nhau” */
+#parishModal .gallery a:not(:first-child) {
+  display: none;
+}
+
+
 /* Modal overlay */
 .modal-overlay {
   position: fixed; inset: 0;
@@ -222,6 +228,7 @@ input:focus, select:focus, textarea:focus {
   font-size: 28px; line-height: 1; cursor: pointer; color:#444;
 }
 .modal-close:hover { color:#000; }
+
 
 
 
