@@ -6,7 +6,8 @@
   <title>Đăng ký Giáo lý 2025-2026</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+  
   <!-- CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -202,7 +203,7 @@
   </div>
 
 
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
   <!-- JS -->
   <script src="app.js"></script>
 
@@ -210,14 +211,16 @@
     <div id="parishModal" class="modal-overlay" aria-hidden="true">
     <div class="modal">
         <button type="button" class="modal-close" aria-label="Đóng">&times;</button>
-        <div class="modal-body">
-         <a href="assets/giao-ho-1.png" target="_blank">
-         <img src="assets/giao-ho-1.png" alt="Giáo họ 1">
-         </a>
-         <a href="assets/giao-ho-2.png" target="_blank">
-         <img src="assets/giao-ho-2.png" alt="Giáo họ 2">
-         </a>
-        </div>
+       <div class="gallery">
+        <a href="assets/giao-ho-1.png" data-lightbox="gallery1" data-title="Ảnh 1">
+          <img src="assets/giao-ho-1.png" alt="Ảnh 1" style="width:100px">
+        </a>
+        <a href="assets/giao-ho-2.png" data-lightbox="gallery1" data-title="Ảnh 2">
+          <img src="assets/giao-ho-2.png" alt="Ảnh 2" style="width:100px">
+        </a>
+        
+      </div>
+
     </div>
     </div>
 
@@ -225,6 +228,7 @@
 
 </body>
 </html>
+
 
 
 
