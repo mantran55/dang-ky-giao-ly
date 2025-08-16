@@ -610,7 +610,7 @@
 
 .title-main h1 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 32px;
+  font-size: 25px;
   font-weight: 700;
   margin: 0;
   letter-spacing: 1.5px;
@@ -666,4 +666,5 @@ h2 {
     font-size: 14px;
   }
 }
+
 
