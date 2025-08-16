@@ -345,7 +345,7 @@
       border-left: 4px solid var(--accent-color); 
     }
     .baptismdf-section      { 
-      background: #f4fff7; 
+      background: #f4f7fb; 
       border-left: 4px solid #03552d; 
     }
     
@@ -665,5 +665,6 @@ h2 {
     font-size: 14px;
   }
 }
+
 
 
