@@ -146,14 +146,6 @@ h2 {
   transform: translateY(-2px); 
 }
 
-.modal-body img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
-
 .section-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
@@ -199,47 +191,31 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(52,152,219,.2);
 }
 
-/* Cải tiến cho checkbox và radio */
+/* Đơn giản hóa checkbox và radio */
 .checkbox-group, .radio-group {
   display: flex;
-  gap: 15px;
   flex-wrap: wrap;
+  gap: 15px;
   margin-top: 10px;
 }
 
-.radio-item, .checkbox-item { 
-  display: flex; 
-  align-items: center; 
+.radio-item, .checkbox-item {
+  display: flex;
+  align-items: center;
   gap: 8px;
-  margin-bottom: 8px;
-  cursor: pointer; 
-  padding: 5px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
+  cursor: pointer;
 }
 
-.radio-item:hover, .checkbox-item:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-/* Kích thước checkbox và radio */
 input[type="radio"], input[type="checkbox"] {
   margin: 0;
   transform: scale(1.5);
   cursor: pointer;
 }
 
-/* Label cho checkbox và radio */
 .radio-item label, .checkbox-item label {
   margin: 0;
-  vertical-align: middle;
   cursor: pointer;
   font-weight: 500;
-}
-
-/* Đảm bảo khoảng cách nhất quán trong các section */
-.section .radio-item, .section .checkbox-item {
-  margin-bottom: 10px;
 }
 
 /* Các section đặc biệt */
@@ -441,10 +417,6 @@ input[type="radio"], input[type="checkbox"] {
   #logo {
     height: 60px;
     max-width: 100px;
-  }
-  
-  .radio-item, .checkbox-item {
-    margin-bottom: 12px;
   }
 }
 
