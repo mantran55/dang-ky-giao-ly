@@ -208,7 +208,7 @@
     .radio-item input[type="radio"], input[type="checkbox"] {
       margin: 0;
       vertical-align: middle;
-      transform: scale(1,5);
+      transform: scale(1,2);
       margin-right: 5px;
     }
     .radio-item, .checkbox-item {
@@ -668,6 +668,7 @@ h2 {
     font-size: 14px;
   }
 }
+
 
 
 
