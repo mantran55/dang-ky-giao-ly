@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   // ====== CẤU HÌNH BACKEND ======
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyA-kvHpXeRj3Z_IlIGs_7-QUykBh_lfgcebbrQQNVoT4ocReyWMsU_npyJZeTHy2HlVQ/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwvj8fYJzEibb5JNPi9PzpIICDfiBKsEE0cgFY7gEaUCLqzan3iFpd-GD4DEkq0TkwTFg/exec";
   
   // ===== DỮ LIỆU TĨNH =====
   const provinces = ["An Giang","Bà Rịa - Vũng Tàu","Bắc Giang","Bắc Kạn","Bạc Liêu","Bắc Ninh","Bến Tre","Bình Định","Bình Dương","Bình Phước","Bình Thuận","Cà Mau","Cao Bằng","Đắk Lắk","Đắk Nông","Điện Biên","Đồng Tháp","Gia Lai","Hà Giang","Hà Nam","Hà Tĩnh","Hải Dương","Hậu Giang","Hòa Bình","Hưng Yên","Khánh Hòa","Kiên Giang","Kon Tum","Lai Châu","Lâm Đồng","Lạng Sơn","Lào Cai","Long An","Nam Định","Nghệ An","Ninh Bình","Ninh Thuận","Phú Thọ","Quảng Bình","Quảng Nam","Quảng Ngãi","Quảng Ninh","Quảng Trị","Sóc Trăng","Sơn La","Tây Ninh","Thái Bình","Thái Nguyên","Thanh Hóa","Thừa Thiên Huế","Tiền Giang","Trà Vinh","Tuyên Quang","Vĩnh Long","Vĩnh Phúc","Yên Bái","Phú Yên","Cần Thơ","Đà Nẵng","Hà Nội","Hải Phòng"];
@@ -759,3 +759,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
