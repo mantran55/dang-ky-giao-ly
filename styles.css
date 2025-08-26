@@ -764,7 +764,7 @@ h2 {
 .modal-header {
   background: linear-gradient(135deg, #4CAF50, #45a049);
   color: white;
-  padding: 18px 25px;
+  padding: 10px 30px;
   border-radius: 12px 12px 0 0;
   display: flex;
   justify-content: space-between;
@@ -1361,3 +1361,4 @@ h2 {
   }
 
 }
+
