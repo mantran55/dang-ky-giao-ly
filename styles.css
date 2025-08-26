@@ -699,12 +699,12 @@ h2 {
 /* Nút danh sách hình tròn */
 .list-button {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  width: 40px;
-  height: 40px;
+  top: -50px;
+  right: 10px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background-color: #4CAF50;
+  background-color: #246086;
   border: none;
   color: white;
   cursor: pointer;
@@ -717,7 +717,7 @@ h2 {
 }
 
 .list-button:hover {
-  background-color: #45a049;
+  background-color: rgb(44, 119, 168);
   transform: scale(1.1);
 }
 
@@ -762,18 +762,18 @@ h2 {
 
 /* Modal header cố định */
 .modal-header {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
-  color: white;
-  padding: 10px 30px;
-  border-radius: 12px 12px 0 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      background: linear-gradient(135deg, #0252a2, #234e76);
+      color: white;
+      padding: 10px 30px;
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
 }
 
@@ -1361,4 +1361,5 @@ h2 {
   }
 
 }
+
 
