@@ -1110,7 +1110,7 @@ h2 {
   width: 50px;
   height: 50px;
   border: 5px solid #f3f3f3;
-  border-top: 5px solid #4CAF50;
+  border-top: 5px solid #234e76;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
@@ -1138,7 +1138,7 @@ h2 {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4CAF50, #45a049);
+  background: linear-gradient(90deg, #234e76, #155794);
   width: 0%;
   animation: progress 2s ease-in-out infinite;
 }
@@ -1175,7 +1175,7 @@ h2 {
 }
 
 .retry-button {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
+  background: linear-gradient(135deg, #234e76, #155794);
   color: white;
   border: none;
   padding: 12px 24px;
@@ -1211,7 +1211,7 @@ h2 {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #4CAF50;
+  background-color: #234e76;
   color: white;
   padding: 15px 25px;
   border-radius: 8px;
@@ -1361,5 +1361,6 @@ h2 {
   }
 
 }
+
 
 
