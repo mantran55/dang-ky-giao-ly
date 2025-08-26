@@ -167,7 +167,6 @@
           <div class="section-title">
             <i class="fas fa"></i>3. Thông Tin Thêm Sức
           </div>
-          <!-- Ngày Thêm Sức -->
           <div class="form-group">
             <label-1>Ngày Thêm Sức:</label-1>
             <div class="checkbox-item">
@@ -176,12 +175,10 @@
             </div>
            <input type="text" id="themSucDate" placeholder="Nếu 5/11/2003 thì nhập 05112003" inputmode="numeric">
           </div>
-          <!-- Sổ Thêm Sức -->
           <div class="form-group">
             <label-1>Sổ Thêm Sức:</label-1>
             <input type="text" id="themSucBook" placeholder="GLV nhập số sổ thêm sức">
           </div>
-          <!-- Nơi Thêm Sức -->
           <div class="form-group">
             <label-1>Nơi Thêm Sức:</label-1>
             <div class="checkbox-item">
@@ -279,18 +276,58 @@
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="parishModalTitle">
       <button type="button" class="modal-close" aria-label="Đóng">&times;</button>
       <h3 id="parishModalTitle">TRƯỜNG HỢP KHÔNG CÓ SỐ</h3>
-      <!-- Ảnh 1 -->
       <a href="assets/giao-ho-2.png" data-lightbox="parishGallery" data-title="Ảnh 1: Mẫu sổ giáo họ">
         <img src="assets/giao-ho-2.png" alt="Ảnh" style="max-width:100%; border-radius:6px;">
       </a>
     </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="app.js"></script>
+    <div class="corner-image-container desktop-only">
+    <img src="assets/corner-image.png" alt="Hình góc dưới phải">
+    
+    <button class="list-button" title="Xem danh sách" id="showRegistrationList">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+        <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+      </svg>
+      
+    </button>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-  <script src="app.js"></script>
+
+    <div id="registrationModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Danh sách đăng ký thành công</h2>
+          <div class="header-controls">
+            <div class="search-container">
+              <input type="text" id="searchInput" placeholder="Tìm kiếm thông tin...">
+            </div>
+            <button id="scrollToTopButton" class="scroll-button" title="Cuộn lên đầu">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+            </button>
+            <button id="reloadButton" class="reload-button" title="Tải lại danh sách">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 4v6h-6"></path>
+                <path d="M1 20v-6h6"></path>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+            </button>
+            <span class="close-button">&times;</span>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div id="registrationList">
+          </div>
+        </div>
+      </div>
+    </div>
+  <script src="registration.js"></script>
 </body>
 </html>
-
 
 
 
