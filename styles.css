@@ -1062,7 +1062,7 @@ h2 {
   font-weight: bold;
   cursor: pointer;
   margin-left: 20px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(216 7 7 / 100%);
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -1359,4 +1359,5 @@ h2 {
   .close-button {
     order: 3;
   }
+
 }
