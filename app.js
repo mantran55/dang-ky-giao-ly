@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   // ====== CẤU HÌNH BACKEND ======
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbythzjdj-h_FgU4Wkqql8KaBsuymhln2L_rll_ZXH6stbgBD4lvjofT554KoQchznDCcQ/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQBdZV5E1pAyRv_0KALwn7FuqpIqXivf1NPCK-5l1id3V4rxl89si8rUpYjjShyxJU/exec";
   
   
   // ===== DỮ LIỆU TĨNH =====
