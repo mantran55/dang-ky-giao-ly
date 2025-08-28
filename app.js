@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
   // ====== CẤU HÌNH BACKEND ======
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyIjvST_tay_W-rYsLGEO6CAPRSxZZ5mZt3E3u-NSpVs_hXagv8RFskXvPYibgFbI83ug/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbweCiWPNnEEHkQc1n__81RUDzqAbDRqbXrXTFeko891fvZ-53Ks0-wqwycuX67_ulPvZg/exec";
   
   
   // ===== DỮ LIỆU TĨNH =====
   const provinces = ["An Giang","Bà Rịa - Vũng Tàu","Bắc Giang","Bắc Kạn","Bạc Liêu","Bắc Ninh","Bến Tre","Bình Định","Bình Dương","Bình Phước","Bình Thuận","Cà Mau","Cao Bằng","Đắk Lắk","Đắk Nông","Điện Biên","Đồng Tháp","Gia Lai","Hà Giang","Hà Nam","Hà Tĩnh","Hải Dương","Hậu Giang","Hòa Bình","Hưng Yên","Khánh Hòa","Kiên Giang","Kon Tum","Lai Châu","Lâm Đồng","Lạng Sơn","Lào Cai","Long An","Nam Định","Nghệ An","Ninh Bình","Ninh Thuận","Phú Thọ","Quảng Bình","Quảng Nam","Quảng Ngãi","Quảng Ninh","Quảng Trị","Sóc Trăng","Sơn La","Tây Ninh","Thái Bình","Thái Nguyên","Thanh Hóa","Thừa Thiên Huế","Tiền Giang","Trà Vinh","Tuyên Quang","Vĩnh Long","Vĩnh Phúc","Yên Bái","Phú Yên","Cần Thơ","Đà Nẵng","Hà Nội","Hải Phòng"];
   const khaiTamClasses = ["Khai Tâm 1A","Khai Tâm 1B","Khai Tâm 1C","Khai Tâm 1D","Khai Tâm 1E","Khai Tâm 2A","Khai Tâm 2B","Khai Tâm 2C","Khai Tâm 2D","Khai Tâm 2E"];
   const xungToiClasses = ["Xưng Tội 1A","Xưng Tội 1B","Xưng Tội 1C","Xưng Tội 1D","Xưng Tội 1E","Xưng Tội 2A","Xưng Tội 2B","Xưng Tội 2C","Xưng Tội 2D","Xưng Tội 2E"];
-  const themSucClasses = ["Thêm Sức 1A","Thêm Sức 1B","Thêm Sức 1C","Thêm Sức 1D","Thêm Sức 1E","Thêm Sức 1F","Thêm Sức 2A","Thêm Sức 2B","Thêm Sức 2C","Thêm Sức 2D","Thêm Sức 2E"];
+  const themSucClasses = ["Thêm Sức 1A","Thêm Sức 1B","Thêm Sức 1C","Thêm Sức 1D","Thêm Sức 1E","Thêm Sức 2A","Thêm Sức 2B","Thêm Sức 2C","Thêm Sức 2D","Thêm Sức 2E"];
   const songDaoClasses = ["Sống Đạo 1A","Sống Đạo 1B","Sống Đạo 1C","Sống Đạo 1D","Sống Đạo 2A","Sống Đạo 2B","Sống Đạo 2C","Sống Đạo 2D"];
   const vaoDoiClasses = ["Vào Đời 1A","Vào Đời 1B","Vào Đời 2A","Vào Đời 2B"];
   
