@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const reloadButton = document.getElementById('reloadButton');
   const listContainer = document.getElementById('registrationList');
   
-  const webAppUrl = 'https://script.google.com/macros/s/AKfycbythzjdj-h_FgU4Wkqql8KaBsuymhln2L_rll_ZXH6stbgBD4lvjofT554KoQchznDCcQ/exec';
+  const webAppUrl = 'https://script.google.com/macros/s/AKfycbyQBdZV5E1pAyRv_0KALwn7FuqpIqXivf1NPCK-5l1id3V4rxl89si8rUpYjjShyxJU/exec';
   
   const searchInput = document.getElementById('searchInput');
   let originalData = [];
