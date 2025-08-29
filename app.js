@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const songDaoClasses = ["Sống Đạo 1A","Sống Đạo 1B","Sống Đạo 1C","Sống Đạo 1D","Sống Đạo 2A","Sống Đạo 2B","Sống Đạo 2C","Sống Đạo 2D"];
   const vaoDoiClasses = ["Vào Đời 1A","Vào Đời 1B","Vào Đời 2A","Vào Đời 2B"];
   
+  window.scrollTo(0, 0);
+  // iOS/Safari đôi khi cần thêm 1 tick
+  setTimeout(() => window.scrollTo(0, 0), 0);
+  
   // ===== HELPERS =====
   function formatName(name){
     if (!name) return '';
@@ -760,3 +764,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
