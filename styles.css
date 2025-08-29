@@ -1,4 +1,4 @@
-
+/* styles.css */
 :root {
       --primary-color: #1a5276;
       --secondary-color: #2980b9;
@@ -156,6 +156,12 @@
       font-weight: bold !important;
       color: var(--dark-color);
       font-size: 16px;
+    }
+
+    label-3{
+      color: #fff !important;
+    opacity: 1;
+    font-weight: 600; /* tùy chọn: đậm hơn cho dễ đọc */
     }
 
     input, select, textarea {
@@ -1363,4 +1369,207 @@ h2 {
 }
 
 
+/* Header cân đối: trái (tiêu đề + thống kê), phải (search + nút) */
+.modal-header{
+  display:grid !important;
+  grid-template-columns: minmax(520px,1fr) auto;
+  gap:16px;
+  align-items:start;
+}
+.header-left{ display:flex; flex-direction:column; gap:10px; }
 
+/* Panel thống kê */
+.stats-card{
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:12px;
+  background:rgba(255,255,255,.07);
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+  padding:10px 12px;
+  color:#fff;
+}
+.stats-controls{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:6px;
+}
+.stats-controls label{ font-weight:600; opacity:.95; }
+#khoiSelect{
+  height:36px; padding:6px 10px;
+  border-radius:8px; border:1px solid rgba(255,255,255,.35);
+  background:rgb(23 80 135); color:#fff; outline:none;
+}
+#khoiSelect:focus{ box-shadow:0 0 0 2px rgba(255,255,255,.22) inset; }
+.stats-meta{ font-size:13px; opacity:.95; margin-left:auto; }
+
+/* Chips */
+.stats-chips{ display:flex; flex-wrap:wrap; gap:10px 12px; }
+.chip {
+    display: inline-block;
+    padding: 6px 8px;
+    border-radius: 999px;
+    font-size: 12PX;
+    font-weight: 700;
+    background: #8e1d1d;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .35);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .05), 0 1px 2px rgba(0, 0, 0, .18);
+}
+
+/* Ô tìm kiếm nhất quán */
+#searchInput{
+  width:360px; max-width:42vw; height:38px;
+  padding:8px 14px; border-radius:10px; border:none;
+  background:rgba(255,255,255,.92); color:#333; box-shadow:0 2px 6px rgba(0,0,0,.12);
+}
+
+/* Mobile */
+@media (max-width: 900px){
+  .modal-header{ grid-template-columns:1fr; }
+  #searchInput{ width:100%; max-width:100%; }
+}
+
+/* --- Compact "Khối:" + dropdown trong panel Thống kê --- */
+#statsContainer { padding: 10px 12px; }
+
+.stats-controls{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;          /* không bị xuống dòng */
+}
+
+.stats-controls label{
+  display: inline-block;      /* ghi đè label mặc định là block */
+  margin: 0;
+  white-space: nowrap;        /* giữ chữ "Khối:" trên 1 dòng */
+}
+
+#khoiSelect{
+  display: inline-block;
+  width: auto;                /* bám theo nội dung */
+  min-width: 120px;           /* đủ để đọc */
+  max-width: 180px;           /* tránh quá dài */
+  height: 34px;
+  padding: 6px 10px;
+  line-height: 1.2;
+}
+
+.stats-controls .stats-meta{
+  margin-left: 12px;
+  white-space: nowrap;
+  opacity: .9;
+  font-size: 13px;
+}
+
+/* Co giãn nhẹ trên màn nhỏ */
+@media (max-width: 900px){
+  .stats-controls{ flex-wrap: wrap; }
+  .stats-controls .stats-meta{ margin-left: 0; }
+}
+
+/* (tuỳ chọn) nếu bạn dùng .header-left do JS chèn vào, giữ bố cục gọn */
+.modal-header .header-left{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-header{
+  background: linear-gradient(135deg, #0252a2, #234e76);
+  color:#fff;
+  padding: 10px 20px;
+  border-radius: 12px 12px 0 0;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.header-left{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-width: 280px;
+}
+.modal-header h2{
+  margin:0 0 2px;
+  font-size:20px;
+  font-weight:700;
+}
+
+#statsContainer.stats-card{
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:10px;
+  background:rgba(255,255,255,.08);
+  padding:8px 10px;
+  color:#fff;
+}
+
+.stats-toolbar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:6px;
+}
+
+/* NHÃN "Khối:" MÀU TRẮNG */
+.modal-header label[for="khoiSelect"]{
+  color:#fff;
+  font-weight:600;
+  margin-right:4px;
+}
+
+/* Select gọn & nổi trên nền header */
+.khoi-select{
+  appearance:none;
+  padding:6px 10px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  outline:none;
+}
+.khoi-select:focus{ box-shadow:0 0 0 2px rgba(255,255,255,.25) inset; }
+
+.stats-meta{
+  font-size:13px;
+  opacity:.95;
+}
+
+.stats-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 10px;
+}
+.stats-chips .chip{
+  cursor:pointer;
+  user-select:none;
+  border:1px solid rgba(255,255,255,.35);
+  background:#8e1d1d;
+  color:#fff;
+  border-radius:999px;
+  padding:4px 10px;
+  font-size:13px;
+  font-weight:700;
+  transition:transform .08s ease, box-shadow .15s ease, background .2s ease;
+}
+.stats-chips .chip:hover{ transform: translateY(-1px); }
+.stats-chips .chip.active{
+  outline:2px solid rgba(255,255,255,.9);
+  background:#0d6efd;
+  box-shadow:0 0 0 2px rgba(0,0,0,.05);
+}
+
+.header-controls{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  max-width: 600px;
+  flex: 1 1 auto;
+}
+.search-container{ flex: 1 1 240px; max-width: 420px; }
+#searchInput{ width:100%; }
