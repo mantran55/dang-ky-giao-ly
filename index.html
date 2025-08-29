@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -299,7 +300,24 @@
     <div id="registrationModal" class="modal-overlay">
       <div class="modal-content">
         <div class="modal-header">
-          <h2>Danh sách đăng ký thành công</h2>
+          <!-- BÊN TRÁI: Tiêu đề + Thống kê -->
+          <div class="header-left">
+            <h2>DANH SÁCH ĐĂNG KÝ THÀNH CÔNG</h2>
+
+            <!-- Thống kê -->
+            <div id="statsContainer" class="stats-card">
+              <div class="stats-controls">
+                <label-3 for="khoiSelect">Khối:</label-3>
+                <select id="khoiSelect">
+                  <option value="">Tất cả</option>
+                </select>
+                <div class="stats-meta">Tổng: 0 bản ghi</div>
+              </div>
+              <div class="stats-chips"></div>
+            </div>
+          </div>
+
+          <!-- BÊN PHẢI: ô tìm kiếm + nút -->
           <div class="header-controls">
             <div class="search-container">
               <input type="text" id="searchInput" placeholder="Tìm kiếm thông tin...">
@@ -319,6 +337,7 @@
             <span class="close-button">&times;</span>
           </div>
         </div>
+
         <div class="modal-body">
           <div id="registrationList">
           </div>
@@ -337,7 +356,6 @@
   </script>
 </body>
 </html>
-
 
 
 
