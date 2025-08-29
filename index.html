@@ -326,8 +326,18 @@
       </div>
     </div>
   <script src="registration.js"></script>
+  <script>
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) window.scrollTo(0, 0);
+  });
+  </script>
 </body>
 </html>
+
 
 
 
