@@ -524,7 +524,7 @@
     document.addEventListener('visibilitychange', async () => {
       if (!document.hidden) { await fetchMeta(1500); applyGate(); }
     });
-    setInterval(async () => { await fetchMeta(3000); applyGate(); }, 30000);
+    setInterval(async () => { await fetchMeta(3000); applyGate(); }, 5000);
 
     // Nhấn khoá trong overlay → mở (mật khẩu)
     lockTrigger?.addEventListener('click', async () => {
@@ -581,6 +581,7 @@
 
 </body>
 </html>
+
 
 
 
