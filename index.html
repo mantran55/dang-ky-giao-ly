@@ -9,50 +9,31 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
    <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-
-    <script>
-  (function () {
-    try {
-      var cache = JSON.parse(localStorage.getItem('metaCache') || '{}');
-      if (cache && cache.mode === 'closed') {
-        // Đặt cờ để CSS ép overlay hiện ngay khi phần tử overlay được parser
-        document.documentElement.setAttribute('data-boot-closed', '1');
-      }
-    } catch (e) {}
-  })();
-</script>
-
-  
 </head>
 <body>
 
-  <button id="mainLockerBtn" class="locker-btn" hidden aria-label="Khóa/Mở đăng ký"></button>
-
-
+  <!-- Overlay: Hết thời gian đăng ký -->
     <div id="closedOverlay" class="closed-overlay" hidden>
-  <div class="closed-card">
-    <div class="icon-wrap lock" id="lockTrigger" title="Nhấn để mở tạm bằng mật khẩu">
+    <div class="closed-card">
+      <div class="icon-wrap lock" id="lockTrigger" >
       <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.7">
         <rect x="3.5" y="10" width="17" height="11" rx="2.2"></rect>
         <path d="M7.5 10V7.2a4.5 4.5 0 0 1 9 0V10"></path>
         <circle cx="12" cy="15.5" r="1.5"></circle>
       </svg>
     </div>
+      <h3>ĐÃ HẾT THỜI GIAN ĐĂNG KÝ</h3>
+      <p class="sub">
+        Hệ thống mở từ <span id="openTimeText">24/08</span> đến <span id="closeTimeText">29/08</span>.
+      </p>
 
-    <h3>ĐÃ HẾT THỜI GIAN ĐĂNG KÝ</h3>
-    <p class="sub">
-      Hệ thống mở từ <span id="openTimeText">24/08</span> đến <span id="closeTimeText">29/08</span>.
-    </p>
+      <div class="actions">
+        <button id="btnClosedViewList" class="btn primary">Xem danh sách</button>
+      </div>
 
-    <div class="actions">
-      <button id="btnClosedViewList" class="btn primary">
-        Xem danh sách
-      </button>
+      <p class="note">Cần hỗ trợ? Vui lòng liên hệ BTS Ban Thiếu Nhi Giáo xứ.</p>
     </div>
-
-    <p class="note">Cần hỗ trợ? Vui lòng liên hệ GLV phụ trách hoặc Ban Giáo Lý giáo xứ.</p>
   </div>
-</div>
 
   <div class="form-container">
     <div class="header">
@@ -390,198 +371,105 @@
   <script src="registration.js"></script>
   
   <script>
-  const GAS_URL   = 'https://script.google.com/macros/s/AKfycbxeC_3foV4mfhjfr7ZEeSInVQvU74_SVRm_fRuK1Ktx82gR8XtUCgZbHLd-ZO1ijvpAyA/exec';
-  const PASSCODE  = 'glvbienhoa';
+/* ===== CẤU HÌNH THỜI GIAN (giờ VN) ===== */
+const REG_OPEN_AT  = new Date('2025-08-24T00:00:00+07:00');
+const REG_CLOSE_AT = new Date('2025-08-29T23:59:59+07:00');
 
-  // Dự phòng nếu chưa từng lấy được từ server
-  const FALLBACK_OPEN_ISO  = '2025-08-24T00:00:00+07:00';
-  const FALLBACK_CLOSE_ISO = '2025-08-29T23:59:59+07:00';
+/* Ép trạng thái nếu cần: 'open' | 'closed' | null */
+const FORCE_MODE = 'closed'; // null để dùng thời gian thật
 
-  const lockedSvg = `
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
-    <rect x="3.5" y="10" width="17" height="11" rx="2.2"></rect>
-    <path d="M7.5 10V7.2a4.5 4.5 0 0 1 9 0V10"></path>
-  </svg>`;
-  const unlockedSvg = `
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
-    <rect x="3.5" y="10" width="17" height="11" rx="2.2"></rect>
-    <path d="M7.5 10V7.2a4.5 4.5 0 0 1 9 0V10"></path>
-    <path d="M9 6c0-2 2-3 3-3s3 1 3 3" stroke-linecap="round" transform="translate(3,-2)"></path>
-  </svg>`;
+function vnFormat(dt){
+  const pad = n => String(n).padStart(2,'0');
+  return `${pad(dt.getDate())}/${pad(dt.getMonth()+1)}/${dt.getFullYear()} ${pad(dt.getHours())}:${pad(dt.getMinutes())}`;
+}
+function isClosedNow(){
+  if (FORCE_MODE === 'open') return false;
+  if (FORCE_MODE === 'closed') return true;
+  const now = new Date();
+  return !(now >= REG_OPEN_AT && now <= REG_CLOSE_AT);
+}
+function setFormDisabled(disabled){
+  const form = document.getElementById('registrationForm');
+  if (!form) return;
+  form.querySelectorAll('input, select, textarea, button').forEach(el => {
+    if (el.id === 'showRegistrationList') return; // nút xem danh sách nằm ngoài form
+    el.disabled = !!disabled;
+  });
+}
+function showClosedOverlay(){
+  const overlay = document.getElementById('closedOverlay');
+  if (!overlay) return;
+  document.getElementById('openTimeText').textContent  = vnFormat(REG_OPEN_AT);
+  document.getElementById('closeTimeText').textContent = vnFormat(REG_CLOSE_AT);
+  overlay.hidden = false;
+  document.body.classList.add('closed');
+  setFormDisabled(true);
 
-  let serverMeta = { mode: 'open', openAt: FALLBACK_OPEN_ISO, closeAt: FALLBACK_CLOSE_ISO };
-
-  function vnDate(iso) {
-    const d = new Date(iso);
-    if (isNaN(d)) return '';
-    return String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0');
-  }
-  function setFormDisabled(flag){
-    const form = document.getElementById('registrationForm');
-    if (!form) return;
-    Array.from(form.elements || []).forEach(el => { try{ el.disabled = !!flag; }catch{} });
-  }
-  function toast(msg){
-    const n = document.createElement('div');
-    n.className = 'notification'; n.textContent = msg;
-    document.body.appendChild(n); setTimeout(()=>n.classList.add('show'),10);
-    setTimeout(()=>{ n.classList.remove('show'); setTimeout(()=>n.remove(),280); }, 2600);
-  }
-
-  function loadCachedMeta(){
-    try{
-      const c = JSON.parse(localStorage.getItem('metaCache') || '{}');
-      if (c && (c.mode === 'open' || c.mode === 'closed')) {
-        serverMeta = c;
-      }
-    }catch(e){}
-  }
-  function saveCachedMeta(){
-    try{
-      localStorage.setItem('metaCache', JSON.stringify(serverMeta));
-    }catch(e){}
-  }
-
-  async function fetchMeta(timeoutMs = 1500) {
-    const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), timeoutMs);
-    try {
-      const res = await fetch(GAS_URL + '?action=meta&ts=' + Date.now(), {
-        cache: 'no-store',
-        signal: ctrl.signal
-      });
-      if (!res.ok) throw new Error('meta http ' + res.status);
-      const j = await res.json();
-      if (j && (j.mode === 'open' || j.mode === 'closed')) {
-        serverMeta = j;
-        saveCachedMeta(); // lưu lại để lần sau boot cực nhanh
-      }
-    } catch (e) {
-      // im lặng dùng cache/fallback
-      console.warn('Meta fetch failed:', e.message || e);
-    } finally {
-      clearTimeout(t);
-    }
-  }
-
-  function applyGate() {
-    const overlay = document.getElementById('closedOverlay');
-    const locker  = document.getElementById('mainLockerBtn');
-
-    const ot = document.getElementById('openTimeText');  if (ot) ot.textContent = vnDate(serverMeta.openAt);
-    const ct = document.getElementById('closeTimeText'); if (ct) ct.textContent = vnDate(serverMeta.closeAt);
-
-    // gỡ cờ boot nếu có (tránh ép hiển thị sai sau khi đã áp dụng meta)
-    document.documentElement.removeAttribute('data-boot-closed');
-
-    if (serverMeta.mode === 'open') {
-      if (overlay) overlay.hidden = true;
-      document.body.classList.remove('closed');
-      setFormDisabled(false);
-      if (locker){
-        locker.hidden = false; locker.dataset.state = 'unlocked';
-        locker.innerHTML = unlockedSvg; locker.title = 'Nhấn để KHÓA (cần mật khẩu)';
-      }
-    } else {
-      if (overlay) overlay.hidden = false;
-      document.body.classList.add('closed');
-      setFormDisabled(true);
-      if (locker){
-        locker.hidden = false; locker.dataset.state = 'locked';
-        locker.innerHTML = lockedSvg; locker.title = 'Đã khóa – nhấn để MỞ (cần mật khẩu)';
+  // Bấm "Xem danh sách": ẩn overlay tạm thời rồi mở modal
+  const btnList = document.getElementById('btnClosedViewList');
+  if (btnList) btnList.onclick = () => {
+    overlay.hidden = true; // ẩn trong lúc xem
+    const trigger = document.getElementById('showRegistrationList');
+    if (trigger) trigger.click();
+    else {
+      const modal = document.getElementById('registrationModal');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
       }
     }
-  }
+  };
 
-  // KHÔNG đặt Content-Type để tránh preflight CORS khi POST
-  async function setModeRemote(mode) {
-    const res = await fetch(GAS_URL, { method: 'POST', body: JSON.stringify({ action: 'setMode', mode, pass: PASSCODE }) });
-    const j = await res.json().catch(()=> ({}));
-    if (!res.ok || j.error) throw new Error(j.error || ('HTTP ' + res.status));
-    serverMeta.mode = j.mode;
-    saveCachedMeta();
-    applyGate();
-  }
+  // Khi modal đóng → hiện overlay lại nếu vẫn đang “hết thời gian”
+  ensureOverlayReturnsOnModalClose();
+}
+function hideClosedOverlay(){
+  const overlay = document.getElementById('closedOverlay');
+  if (!overlay) return;
+  overlay.hidden = true;
+  document.body.classList.remove('closed');
+  setFormDisabled(false);
+}
+function ensureOverlayReturnsOnModalClose(){
+  const overlay = document.getElementById('closedOverlay');
+  const modal   = document.getElementById('registrationModal');
+  const closeBtn= document.querySelector('.close-button');
+  if (!overlay || !modal) return;
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    const overlay     = document.getElementById('closedOverlay');
-    const lockTrigger = document.getElementById('lockTrigger');
-    const mainLocker  = document.getElementById('mainLockerBtn');
-    const openListBtn = document.getElementById('btnClosedViewList');
-    const showListBtn = document.getElementById('showRegistrationList');
-    const modal       = document.getElementById('registrationModal');
-    const closeBtn    = document.querySelector('.close-button');
+  const reShow = () => { if (isClosedNow()) overlay.hidden = false; };
 
-    // 1) Áp dụng NGAY từ cache (hiển thị tức thì)
-    loadCachedMeta();
-    applyGate();
+  // Click nút đóng
+  if (closeBtn) closeBtn.addEventListener('click', () => setTimeout(reShow, 0));
 
-    // 2) Song song gọi server (có timeout) rồi cập nhật UI sau
-    await fetchMeta(1500);
-    applyGate();
+  // Click ra nền để đóng
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) setTimeout(reShow, 0);
+  });
 
-    // 3) Đồng bộ đa máy
-    document.addEventListener('visibilitychange', async () => {
-      if (!document.hidden) { await fetchMeta(1500); applyGate(); }
-    });
-    setInterval(async () => { await fetchMeta(3000); applyGate(); }, 5000);
-
-    // Nhấn khoá trong overlay → mở (mật khẩu)
-    lockTrigger?.addEventListener('click', async () => {
-      const pw = prompt('Nhập mật khẩu để mở đăng ký:');
-      if (pw == null) return;
-      if (pw !== PASSCODE) return toast('Sai mật khẩu.');
-      try { await setModeRemote('open'); toast('Đã mở đăng ký.'); }
-      catch (e) { toast('Không thể mở: ' + e.message); }
-    });
-
-    // Nút khoá góc phải → toggle
-    if (mainLocker){
-      mainLocker.hidden = false;
-      mainLocker.addEventListener('click', async () => {
-        const target = (serverMeta.mode === 'open') ? 'closed' : 'open';
-        const pw = prompt(`Nhập mật khẩu để chuyển sang trạng thái "${target.toUpperCase()}"`);
-        if (pw == null) return;
-        if (pw !== PASSCODE) return toast('Sai mật khẩu.');
-        try {
-          await setModeRemote(target);
-          toast(target === 'open' ? 'Đã mở đăng ký.' : 'Đã khóa đăng ký.');
-          if (target === 'closed' && modal && modal.classList.contains('active')) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            overlay && (overlay.hidden = false);
-          }
-        } catch (e) {
-          toast('Thao tác thất bại: ' + e.message);
-        }
-      });
-    }
-
-    // Đang khóa vẫn cho xem danh sách
-    openListBtn?.addEventListener('click', () => {
-      overlay && (overlay.hidden = true);
-      showListBtn?.click();
-    });
-    // Đóng modal thì overlay hiện lại nếu đang khóa
-    closeBtn?.addEventListener('click', () => {
-      if (serverMeta.mode === 'closed' && overlay) overlay.hidden = false;
-    });
-    window.addEventListener('click', (e) => {
-      if (e.target === modal && serverMeta.mode === 'closed' && overlay) {
-        overlay.hidden = false;
-      }
+  // Trường hợp đóng bằng code/phím → quan sát class
+  const obs = new MutationObserver(muts => {
+    muts.forEach(m => {
+      if (m.attributeName === 'class' && !modal.classList.contains('active')) reShow();
     });
   });
+  obs.observe(modal, { attributes: true });
+}
+function evaluateWindow(){
+  if (isClosedNow()) showClosedOverlay();
+  else hideClosedOverlay();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  evaluateWindow();
+  window.addEventListener('pageshow', (e) => { if (e.persisted) evaluateWindow(); });
+});
 </script>
-
-
 
 
 
 
 </body>
 </html>
-
 
 
 
