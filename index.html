@@ -11,6 +11,35 @@
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
+
+  <button id="mainLockerBtn" class="locker-btn" hidden aria-label="Khóa/Mở đăng ký"></button>
+
+
+    <div id="closedOverlay" class="closed-overlay" hidden>
+  <div class="closed-card">
+    <div class="icon-wrap lock" id="lockTrigger" title="Nhấn để mở tạm bằng mật khẩu">
+      <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.7">
+        <rect x="3.5" y="10" width="17" height="11" rx="2.2"></rect>
+        <path d="M7.5 10V7.2a4.5 4.5 0 0 1 9 0V10"></path>
+        <circle cx="12" cy="15.5" r="1.5"></circle>
+      </svg>
+    </div>
+
+    <h3>ĐÃ HẾT THỜI GIAN ĐĂNG KÝ</h3>
+    <p class="sub">
+      Hệ thống mở từ <span id="openTimeText">24/08</span> đến <span id="closeTimeText">29/08</span>.
+    </p>
+
+    <div class="actions">
+      <button id="btnClosedViewList" class="btn primary">
+        Xem danh sách
+      </button>
+    </div>
+
+    <p class="note">Cần hỗ trợ? Vui lòng liên hệ GLV phụ trách hoặc Ban Giáo Lý giáo xứ.</p>
+  </div>
+</div>
+
   <div class="form-container">
     <div class="header">
     <div class="header-content">
@@ -345,15 +374,141 @@
       </div>
     </div>
   <script src="registration.js"></script>
+  
   <script>
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
+    const REG_OPEN_AT  = new Date('2025-08-24T00:00:00+07:00'); 
+    const REG_CLOSE_AT = new Date('2025-08-29T23:59:59+07:00');  
+    const FORCE_MODE   = null; 
+    const PASSCODE     = '@123456';
 
-  window.addEventListener('pageshow', function (e) {
-    if (e.persisted) window.scrollTo(0, 0);
-  });
-  </script>
+    const lockedSvg = `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+      <rect x="3.5" y="10" width="17" height="11" rx="2.2"></rect>
+      <path d="M7.5 10V7.2a4.5 4.5 0 0 1 9 0V10"></path>
+    </svg>`;
+    const unlockedSvg = `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+      <rect x="3.5" y="10" width="17" height="11" rx="2.2"></rect>
+      <path d="M7.5 10V7.2a4.5 4.5 0 0 1 9 0V10"></path>
+      <path d="M9 6c0-2 2-3 3-3s3 1 3 3" stroke-linecap="round" transform="translate(3,-2)"></path>
+    </svg>`;
+
+    function vnFormat(d){
+      const dt = new Date(d);
+      const dd = String(dt.getDate()).padStart(2,'0');
+      const mm = String(dt.getMonth()+1).padStart(2,'0');
+      return `${dd}/${mm}`;
+    }
+    function setFormDisabled(flag){
+      const form = document.getElementById('registrationForm');
+      if (!form) return;
+      Array.from(form.elements || []).forEach(el => { try{ el.disabled = !!flag; }catch{} });
+    }
+    function toast(msg){
+      const n = document.createElement('div');
+      n.className = 'notification'; n.textContent = msg;
+      document.body.appendChild(n); setTimeout(()=>n.classList.add('show'),10);
+      setTimeout(()=>{n.classList.remove('show'); setTimeout(()=>n.remove(),280);},2600);
+    }
+    function effectiveMode(now=new Date()){
+      const local = localStorage.getItem('forceMode');  // 'open'|'closed'|null
+      if (local === 'open' || local === 'closed') return local;
+      if (FORCE_MODE === 'open' || FORCE_MODE === 'closed') return FORCE_MODE;
+      return (now >= REG_OPEN_AT && now <= REG_CLOSE_AT) ? 'open' : 'closed';
+    }
+
+    function applyGate(){
+      const mode    = effectiveMode();
+      const overlay = document.getElementById('closedOverlay');
+      const locker  = document.getElementById('mainLockerBtn');
+
+      const ot = document.getElementById('openTimeText');  if (ot) ot.textContent = vnFormat(REG_OPEN_AT);
+      const ct = document.getElementById('closeTimeText'); if (ct) ct.textContent = vnFormat(REG_CLOSE_AT);
+
+      if (mode === 'open'){
+        if (overlay) overlay.hidden = true;
+        document.body.classList.remove('closed');
+        setFormDisabled(false);
+        if (locker){
+          locker.hidden = false; locker.dataset.state = 'unlocked';
+          locker.innerHTML = unlockedSvg; locker.title = 'Nhấn để KHÓA (cần mật khẩu)';
+        }
+      }else{
+        if (overlay) overlay.hidden = false;
+        document.body.classList.add('closed');
+        setFormDisabled(true);
+        if (locker){
+          locker.hidden = false; locker.dataset.state = 'locked';
+          locker.innerHTML = lockedSvg; locker.title = 'Đã khóa – nhấn để MỞ (cần mật khẩu)';
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const overlay     = document.getElementById('closedOverlay');
+      const lockTrigger = document.getElementById('lockTrigger');   
+      const mainLocker  = document.getElementById('mainLockerBtn');  
+      const openListBtn = document.getElementById('btnClosedViewList');
+      const modal       = document.getElementById('registrationModal');
+      const closeBtn    = document.querySelector('.close-button');
+      const showListBtn = document.getElementById('showRegistrationList');
+
+      applyGate();
+
+      if (lockTrigger){
+        lockTrigger.addEventListener('click', () => {
+          const pw = prompt('Nhập mật khẩu để mở tạm:');
+          if (pw === PASSCODE){
+            localStorage.setItem('forceMode','open');
+            applyGate();
+            toast('Đã mở tạm đăng ký.');
+          }else if (pw !== null){
+            toast('Sai mật khẩu.');
+          }
+        });
+      }
+
+      if (mainLocker){
+        mainLocker.addEventListener('click', () => {
+          const mode = effectiveMode();
+          const want = (mode === 'open') ? 'closed' : 'open';
+          const pw   = prompt(`Nhập mật khẩu để chuyển sang trạng thái "${want.toUpperCase()}"`);
+          if (pw === PASSCODE){
+            localStorage.setItem('forceMode', want);
+            applyGate();
+            toast(want === 'open' ? 'Đã mở tạm đăng ký.' : 'Đã khóa đăng ký.');
+            if (want === 'closed' && modal && modal.classList.contains('active')){
+              modal.classList.remove('active');
+              document.body.style.overflow = 'auto';
+            }
+          }else if (pw !== null){
+            toast('Sai mật khẩu.');
+          }
+        });
+      }
+
+      if (openListBtn){
+        openListBtn.addEventListener('click', () => {
+          if (overlay) overlay.hidden = true;
+          if (showListBtn) showListBtn.click(); 
+        });
+      }
+      if (closeBtn){
+        closeBtn.addEventListener('click', () => {
+          if (effectiveMode() === 'closed' && overlay) overlay.hidden = false;
+        });
+      }
+      window.addEventListener('click', (e) => {
+        if (e.target === modal && effectiveMode() === 'closed' && overlay){
+          overlay.hidden = false;
+        }
+      });
+    });
+    </script>
+
+
+
+
 </body>
 </html>
 
