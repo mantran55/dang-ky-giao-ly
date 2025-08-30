@@ -1573,3 +1573,101 @@ h2 {
 }
 .search-container{ flex: 1 1 240px; max-width: 420px; }
 #searchInput{ width:100%; }
+
+/* === Overlay hết hạn === */
+/* ===== Overlay HẾT THỜI GIAN (style mới) ===== */
+.closed-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: radial-gradient(1200px 600px at 50% -20%, rgba(255,255,255,0.06), rgba(0,0,0,0.75));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(2px);
+}
+/* tôn trọng thuộc tính hidden từ JS */
+.closed-overlay[hidden] { display: none !important; }
+
+.closed-card {
+  width: min(720px, 92vw);
+  color: #fff;
+  background: linear-gradient(135deg, #0e3a66, #1e5a92);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.closed-card .icon-wrap {
+  width: 64px; height: 64px;
+  margin: 0 auto 8px;
+  color: #ffcc66;
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,.4));
+}
+/* nếu dùng icon-click để nhập mật khẩu thì cho “hand” + hover nhẹ */
+.closed-card .icon-wrap.lock { cursor: pointer; transition: transform .15s ease; }
+.closed-card .icon-wrap.lock:hover { transform: translateY(-2px); }
+
+.closed-card h3 {
+  font: 700 22px/1.25 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  margin: 6px 0 8px;
+}
+
+.closed-card .sub {
+  opacity: .95;
+  margin-bottom: 18px;
+}
+
+.closed-card .actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.closed-card .btn {
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+  font-weight: 700;
+  color: #fff;
+}
+
+.closed-card .btn.primary {
+  background: #246086;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+.closed-card .btn.primary:hover { transform: translateY(-1px); }
+
+.closed-card .btn.ghost { background: transparent; }
+.closed-card .btn.ghost:hover { background: rgba(255,255,255,.08); }
+
+.closed-card .note {
+  font-size: 14px;
+  opacity: .9;
+}
+
+/* Khi đóng đăng ký: làm mờ nền và khoá tương tác */
+body.closed .form-container {
+  filter: grayscale(.2) blur(1px);
+  pointer-events: none;
+}
+/* vẫn cho bấm nút “Xem danh sách” ở góc (nếu có) */
+body.closed .list-button { pointer-events: auto; }
+
+.locker-btn{
+  position: fixed; top: 14px; right: 14px; z-index: 10000;
+  width: 42px; height: 42px; border-radius: 50%; border: none;
+  background: #1a5276; color: #fff; display:grid; place-items:center;
+  box-shadow: 0 6px 16px rgba(0,0,0,.18);
+  cursor: pointer; transition: transform .12s ease, background .2s ease, box-shadow .2s ease;
+}
+.locker-btn:hover{ transform: translateY(-1px); background:#184b6c; box-shadow: 0 10px 22px rgba(0,0,0,.22); }
+.locker-btn svg{ width: 22px; height: 22px; }
