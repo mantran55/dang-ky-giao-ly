@@ -1,6 +1,6 @@
 // registration.js
 document.addEventListener('DOMContentLoaded', function () {
-  const webAppUrl = 'https://script.google.com/macros/s/AKfycbxeC_3foV4mfhjfr7ZEeSInVQvU74_SVRm_fRuK1Ktx82gR8XtUCgZbHLd-ZO1ijvpAyA/exec';
+  const webAppUrl = 'https://script.google.com/macros/s/AKfycbzo9uMV_64YeOTwfIIAy21bgQHR8_cDSdXg5XPtlABOMEcJAYE5OaZXWFLRppVsCy-TCQ/exec';
 
   const FILTER_TABLE_BY_KHOI = true;
 
