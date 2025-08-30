@@ -1671,3 +1671,7 @@ body.closed .list-button { pointer-events: auto; }
 }
 .locker-btn:hover{ transform: translateY(-1px); background:#184b6c; box-shadow: 0 10px 22px rgba(0,0,0,.22); }
 .locker-btn svg{ width: 22px; height: 22px; }
+
+/* Boot cực nhanh: nếu HTML có data-boot-closed thì ép overlay hiện ngay */
+html[data-boot-closed="1"] #closedOverlay { display: flex !important; }
+html[data-boot-closed="1"] body { overflow: hidden; }
