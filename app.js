@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   // ====== CẤU HÌNH BACKEND ======
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbweCiWPNnEEHkQc1n__81RUDzqAbDRqbXrXTFeko891fvZ-53Ks0-wqwycuX67_ulPvZg/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxeC_3foV4mfhjfr7ZEeSInVQvU74_SVRm_fRuK1Ktx82gR8XtUCgZbHLd-ZO1ijvpAyA/exec";
   
   
   // ===== DỮ LIỆU TĨNH =====
@@ -11,10 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const songDaoClasses = ["Sống Đạo 1A","Sống Đạo 1B","Sống Đạo 1C","Sống Đạo 1D","Sống Đạo 2A","Sống Đạo 2B","Sống Đạo 2C","Sống Đạo 2D"];
   const vaoDoiClasses = ["Vào Đời 1A","Vào Đời 1B","Vào Đời 2A","Vào Đời 2B"];
   
+
   window.scrollTo(0, 0);
   // iOS/Safari đôi khi cần thêm 1 tick
   setTimeout(() => window.scrollTo(0, 0), 0);
-  
+
   // ===== HELPERS =====
   function formatName(name){
     if (!name) return '';
@@ -764,4 +765,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-
